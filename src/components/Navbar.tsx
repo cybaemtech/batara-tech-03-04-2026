@@ -75,10 +75,16 @@ const Navbar = () => {
         </li>
 
         <li className="relative group">
-          <button className="flex items-center gap-1 text-[13px] font-medium tracking-wider uppercase text-silver hover:text-foreground transition-colors py-2">
-            Services
-            <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
-          </button>
+          {(() => {
+            const servicesPaths = ["/services", "/mould-design", "/technical-gallery"];
+            const isServicesActive = servicesPaths.includes(location.pathname);
+            return (
+              <button className={`flex items-center gap-1 text-[13px] font-medium tracking-wider uppercase transition-colors py-2 ${isServicesActive ? "text-primary" : "text-silver hover:text-foreground"}`}>
+                Services
+                <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+            );
+          })()}
           <div className="absolute top-full left-0 mt-1 w-80 bg-card border border-border rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[200] py-1">
             {servicesItems.map((item) => (
               <Link
@@ -93,16 +99,21 @@ const Navbar = () => {
         </li>
 
         <li>
-          <Link to="/careers" className="text-[13px] font-medium tracking-wider uppercase text-silver hover:text-foreground transition-colors">
+          <NavLink
+            to="/careers"
+            className={({ isActive }) =>
+              `text-[13px] font-medium tracking-wider uppercase transition-colors ${isActive ? "text-primary" : "text-silver hover:text-foreground"}`
+            }
+          >
             Careers
-          </Link>
+          </NavLink>
         </li>
 
         <li>
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              `text-[13px] font-medium tracking-wider uppercase transition-colors ${isActive ? "text-foreground" : "text-silver hover:text-foreground"}`
+              `text-[13px] font-medium tracking-wider uppercase transition-colors ${isActive ? "text-primary" : "text-silver hover:text-foreground"}`
             }
           >
             About Us
@@ -169,14 +180,20 @@ const Navbar = () => {
             </div>
           )}
 
-          <Link to="/careers" className="text-sm font-medium uppercase tracking-wider text-silver hover:text-foreground transition-colors py-1">
+          <NavLink
+            to="/careers"
+            className={({ isActive }) =>
+              `text-sm font-medium uppercase tracking-wider transition-colors py-1 ${isActive ? "text-primary font-semibold" : "text-silver hover:text-foreground"}`
+            }
+            onClick={() => setMobileOpen(false)}
+          >
             Careers
-          </Link>
+          </NavLink>
 
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              `text-sm font-medium uppercase tracking-wider transition-colors py-1 ${isActive ? "text-foreground font-semibold" : "text-silver hover:text-foreground"}`
+              `text-sm font-medium uppercase tracking-wider transition-colors py-1 ${isActive ? "text-primary font-semibold" : "text-silver hover:text-foreground"}`
             }
             onClick={() => setMobileOpen(false)}
           >
