@@ -39,7 +39,7 @@ const HeroSection = () => {
           {/* Ring 1 */}
           <div
             className="absolute inset-0 rounded-full border-2 border-[hsl(214_72%_65%/0.4)] shadow-[0_0_30px_hsl(214_72%_37%/0.3),0_0_60px_hsl(214_72%_37%/0.1)]"
-            style={{ animation: "spin-slow 28s linear infinite" }}
+            style={{ animation: "spin-ring 28s linear infinite" }}
           >
             <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[hsl(214_72%_70%)] shadow-[0_0_16px_hsl(214_72%_70%),0_0_32px_hsl(214_72%_50%/0.5)]" />
           </div>
