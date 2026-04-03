@@ -61,12 +61,12 @@ const Navbar = () => {
             Industries
             <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
           </button>
-          <div className="absolute top-full left-0 mt-1 w-52 bg-card border border-border rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[200] py-1">
+          <div className="absolute top-full left-0 mt-1 w-80 bg-card border border-border rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[200] p-2 grid grid-cols-2 gap-0.5">
             {industriesItems.map((item) => (
               <a
                 key={item}
                 href="#"
-                className="block px-4 py-2.5 text-[13px] text-silver hover:text-foreground hover:bg-secondary transition-colors"
+                className="block px-3 py-2.5 text-[13px] text-silver hover:text-foreground hover:bg-secondary rounded transition-colors"
               >
                 {item}
               </a>
@@ -85,12 +85,12 @@ const Navbar = () => {
               </button>
             );
           })()}
-          <div className="absolute top-full left-0 mt-1 w-80 bg-card border border-border rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[200] py-1">
+          <div className="absolute top-full left-0 mt-1 w-[560px] bg-card border border-border rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[200] p-2 grid grid-cols-2 gap-0.5">
             {servicesItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.href}
-                className="block px-4 py-2.5 text-[13px] text-silver hover:text-foreground hover:bg-secondary transition-colors"
+                className="block px-3 py-2.5 text-[13px] text-silver hover:text-foreground hover:bg-secondary rounded transition-colors leading-snug"
               >
                 {item.label}
               </Link>
