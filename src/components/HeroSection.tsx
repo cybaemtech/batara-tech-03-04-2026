@@ -4,41 +4,55 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen pt-[76px] overflow-hidden bg-[#060c1a] z-[1]">
-      {/* Full-screen animated background grid — more visible */}
+
+      {/* Background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/clip2.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark overlay so text stays readable */}
+      <div className="absolute inset-0 bg-[#060c1a]/70 z-[1] pointer-events-none" />
+
+      {/* Subtle grid overlay */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none z-[2]"
         style={{
           backgroundImage:
-            "linear-gradient(hsl(214 72% 55% / 0.12) 1px, transparent 1px), linear-gradient(90deg, hsl(214 72% 55% / 0.12) 1px, transparent 1px)",
+            "linear-gradient(hsl(214 72% 55% / 0.07) 1px, transparent 1px), linear-gradient(90deg, hsl(214 72% 55% / 0.07) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
 
-      {/* Radial glows — intensified */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_70%_50%,hsl(214_72%_37%/0.38),transparent_55%)]" />
-        <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_20%_80%,hsl(220_58%_30%/0.28),transparent_50%)]" />
-        <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_80%_15%,hsl(214_72%_50%/0.18),transparent_40%)]" />
+      {/* Radial glows */}
+      <div className="absolute inset-0 pointer-events-none z-[2]">
+        <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_70%_50%,hsl(214_72%_37%/0.28),transparent_55%)]" />
+        <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_20%_80%,hsl(220_58%_30%/0.18),transparent_50%)]" />
       </div>
 
-      {/* Orbit visualization — full background, centered right */}
-      <div className="absolute inset-0 flex items-center justify-end pr-8 lg:pr-24 pointer-events-none">
+      {/* Orbit visualization — right side, made smaller */}
+      <div className="absolute inset-0 flex items-center justify-end pr-8 lg:pr-20 pointer-events-none z-[3]">
         <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.3 }}
-          className="relative w-[340px] h-[340px] md:w-[480px] md:h-[480px] lg:w-[600px] lg:h-[600px]"
+          className="relative w-[220px] h-[220px] md:w-[300px] md:h-[300px] lg:w-[380px] lg:h-[380px]"
         >
           {/* Ring 1 */}
           <div
-            className="absolute inset-0 rounded-full border-2 border-[hsl(214_72%_65%/0.55)] shadow-[0_0_60px_hsl(214_72%_37%/0.55),0_0_120px_hsl(214_72%_37%/0.2)]"
+            className="absolute inset-0 rounded-full border-2 border-[hsl(214_72%_65%/0.55)] shadow-[0_0_40px_hsl(214_72%_37%/0.45),0_0_80px_hsl(214_72%_37%/0.15)]"
             style={{ animation: "spin-slow 28s linear infinite" }}
           >
-            <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[hsl(214_72%_70%)] shadow-[0_0_28px_hsl(214_72%_70%),0_0_60px_hsl(214_72%_50%/0.8)]" />
+            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[hsl(214_72%_70%)] shadow-[0_0_20px_hsl(214_72%_70%),0_0_44px_hsl(214_72%_50%/0.7)]" />
           </div>
           {/* Ring 2 */}
           <div
-            className="absolute rounded-full border-2 border-[hsl(214_72%_50%/0.65)] shadow-[0_0_40px_hsl(214_72%_37%/0.45),0_0_90px_hsl(214_72%_37%/0.18)]"
+            className="absolute rounded-full border-2 border-[hsl(214_72%_50%/0.65)] shadow-[0_0_28px_hsl(214_72%_37%/0.35),0_0_60px_hsl(214_72%_37%/0.12)]"
             style={{
               top: "50%", left: "50%",
               transform: "translate(-50%,-50%)",
@@ -46,11 +60,11 @@ const HeroSection = () => {
               animation: "spin-slow 20s linear infinite reverse",
             }}
           >
-            <div className="absolute -top-[4px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[hsl(214_72%_60%)] shadow-[0_0_22px_hsl(214_72%_60%),0_0_50px_hsl(214_72%_50%/0.7)]" />
+            <div className="absolute -top-[3px] left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[hsl(214_72%_60%)] shadow-[0_0_16px_hsl(214_72%_60%),0_0_36px_hsl(214_72%_50%/0.6)]" />
           </div>
           {/* Ring 3 */}
           <div
-            className="absolute rounded-full border border-[hsl(220_58%_60%/0.7)] shadow-[0_0_28px_hsl(220_58%_40%/0.55)]"
+            className="absolute rounded-full border border-[hsl(220_58%_60%/0.7)] shadow-[0_0_20px_hsl(220_58%_40%/0.45)]"
             style={{
               top: "50%", left: "50%",
               transform: "translate(-50%,-50%)",
@@ -58,20 +72,20 @@ const HeroSection = () => {
               animation: "spin-slow 13s linear infinite",
             }}
           >
-            <div className="absolute -top-[3px] left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[hsl(214_72%_65%)] shadow-[0_0_16px_hsl(214_72%_65%)]" />
+            <div className="absolute -top-[2px] left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[hsl(214_72%_65%)] shadow-[0_0_12px_hsl(214_72%_65%)]" />
           </div>
 
           {/* Core */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full flex items-center justify-center"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full flex items-center justify-center"
             style={{
               background: "radial-gradient(circle, hsl(214 72% 50% / 0.55), hsl(214 72% 37% / 0.15))",
               border: "2px solid hsl(214 72% 65% / 0.75)",
-              boxShadow: "0 0 60px hsl(214 72% 37% / 0.65), 0 0 120px hsl(214 72% 37% / 0.3), inset 0 0 30px hsl(214 72% 50% / 0.2)",
+              boxShadow: "0 0 40px hsl(214 72% 37% / 0.55), 0 0 80px hsl(214 72% 37% / 0.25), inset 0 0 20px hsl(214 72% 50% / 0.2)",
               animation: "core-pulse 3s ease-in-out infinite",
             }}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.5" className="w-10 h-10">
+            <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.5" className="w-7 h-7">
               <path d="M12 2L2 7l10 5 10-5-10-5z" />
               <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
             </svg>
@@ -79,35 +93,35 @@ const HeroSection = () => {
 
           {/* Orbit nodes */}
           <ONode pos="top-[2%] left-1/2 -translate-x-1/2" label="Concept & Design" delay={0.8}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-5 h-5"><circle cx="12" cy="12" r="3" /><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" /></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-4 h-4"><circle cx="12" cy="12" r="3" /><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" /></svg>
           </ONode>
           <ONode pos="top-1/2 right-0 -translate-y-1/2" label="Analysis" delay={1.0}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-5 h-5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-4 h-4"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>
           </ONode>
           <ONode pos="bottom-[2%] left-1/2 -translate-x-1/2" label="Prototype" delay={1.2}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-5 h-5"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-4 h-4"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>
           </ONode>
           <ONode pos="top-1/2 left-0 -translate-y-1/2" label="Production" delay={0.9}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-5 h-5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-4 h-4"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
           </ONode>
 
           {/* Corner brackets */}
-          <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-[hsl(214_72%_60%/0.8)]" />
-          <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-[hsl(214_72%_60%/0.8)]" />
-          <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-[hsl(214_72%_60%/0.8)]" />
-          <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-[hsl(214_72%_60%/0.8)]" />
+          <div className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-[hsl(214_72%_60%/0.8)]" />
+          <div className="absolute top-2 right-2 w-6 h-6 border-t-2 border-r-2 border-[hsl(214_72%_60%/0.8)]" />
+          <div className="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-[hsl(214_72%_60%/0.8)]" />
+          <div className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-[hsl(214_72%_60%/0.8)]" />
         </motion.div>
       </div>
 
       {/* Scan line */}
       <div
-        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-[hsl(214_72%_65%/0.7)] to-transparent pointer-events-none z-[2]"
+        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-[hsl(214_72%_65%/0.7)] to-transparent pointer-events-none z-[4]"
         style={{ animation: "scan-line 5s ease-in-out infinite" }}
       />
 
       {/* Left gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#060c1a] via-[#060c1a]/80 via-50% to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#060c1a]/50 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#060c1a] via-[#060c1a]/75 via-50% to-transparent pointer-events-none z-[4]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#060c1a]/50 via-transparent to-transparent pointer-events-none z-[4]" />
 
       {/* Text content */}
       <div className="relative z-10 flex flex-col justify-center min-h-[calc(100vh-76px)] px-6 sm:px-12 md:px-16 lg:px-20 max-w-3xl">
@@ -193,12 +207,12 @@ const ONode = ({ pos, label, delay, children }: { pos: string; label: string; de
     initial={{ opacity: 0, scale: 0.7 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.6, delay }}
-    className={`absolute flex flex-col items-center gap-1.5 ${pos}`}
+    className={`absolute flex flex-col items-center gap-1 ${pos}`}
   >
-    <div className="w-12 h-12 bg-[hsl(214_72%_12%/0.95)] border border-[hsl(214_72%_55%/0.55)] rounded-lg flex items-center justify-center shadow-[0_0_28px_hsl(214_72%_37%/0.45)] backdrop-blur-md">
+    <div className="w-9 h-9 bg-[hsl(214_72%_12%/0.95)] border border-[hsl(214_72%_55%/0.55)] rounded-lg flex items-center justify-center shadow-[0_0_20px_hsl(214_72%_37%/0.4)] backdrop-blur-md">
       {children}
     </div>
-    <span className="font-mono text-[8px] font-semibold tracking-[0.15em] text-[hsl(214_72%_75%)] uppercase text-center whitespace-nowrap">
+    <span className="font-mono text-[7px] font-semibold tracking-[0.12em] text-[hsl(214_72%_75%)] uppercase text-center whitespace-nowrap">
       {label}
     </span>
   </motion.div>
