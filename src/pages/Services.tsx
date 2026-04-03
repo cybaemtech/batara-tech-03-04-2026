@@ -265,19 +265,6 @@ const Services = () => {
             </p>
           </motion.div>
 
-          {/* Progress dots */}
-          <div className="flex items-center justify-center gap-2 mb-8">
-            {ecosystemSteps.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveStep(i)}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
-                  i === activeStep ? "w-8 bg-primary" : "w-2 bg-border hover:bg-primary/40"
-                }`}
-              />
-            ))}
-          </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {ecosystemSteps.map((step, i) => {
               const isActive = i === activeStep;
