@@ -132,7 +132,7 @@ const Careers = () => {
               </span>
               <div className="w-8 h-0.5 bg-[hsl(214_72%_75%)]" />
             </div>
-            <h1 className="font-display font-extrabold text-[28px] sm:text-[40px] md:text-[52px] lg:text-[clamp(40px,5vw,68px)] leading-[1.03] tracking-tight text-white mb-5">
+            <h1 className="font-display font-bold text-[28px] sm:text-[40px] md:text-[52px] lg:text-[clamp(40px,5vw,68px)] leading-[1.03] tracking-tight text-white mb-5">
               BUILD WHAT OTHERS<br />
               <span className="text-[hsl(214_72%_65%)]">ONLY SIMULATE.</span>
             </h1>

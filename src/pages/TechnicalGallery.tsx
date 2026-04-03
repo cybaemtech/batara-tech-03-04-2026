@@ -50,7 +50,7 @@ const TechnicalGallery = () => {
             </motion.div>
             <motion.h1
               {...fd(0.1)}
-              className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-6 leading-tight"
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
             >
               ENGINEERING IN
               <br />

@@ -153,7 +153,7 @@ const Services = () => {
               </span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-6 leading-tight">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
               WHERE DIGITAL PRECISION <br className="hidden md:block" /> DICTATES FACTORY REALITY
             </h1>
             <p className="text-silver max-w-2xl mx-auto text-[15px] leading-relaxed mb-8">
