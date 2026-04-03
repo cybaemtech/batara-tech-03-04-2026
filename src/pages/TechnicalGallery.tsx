@@ -1,15 +1,9 @@
-import { motion } from "framer-motion";
-import { Play, Video } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-const fadeUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.6 },
-};
 
 const fd = (d = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -45,34 +39,25 @@ const videos = [
   },
 ];
 
-const VideoPlaceholder = ({ src, title }: { src: string; title: string }) => (
-  <div className="relative w-full rounded-xl overflow-hidden border border-border bg-card shadow-[0_0_40px_hsl(var(--primary)/0.08)] aspect-video flex items-center justify-center group">
-    {src ? (
-      <video
-        src={src}
-        controls
-        className="w-full h-full object-cover"
-        title={title}
-      />
-    ) : (
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-card via-muted/40 to-card">
-        <div className="w-20 h-20 rounded-full border-2 border-primary/30 flex items-center justify-center mb-5 group-hover:border-accent-orange-2/60 transition-colors duration-300">
-          <Play className="w-8 h-8 text-primary/40 group-hover:text-accent-orange-2/70 transition-colors duration-300 ml-1" />
-        </div>
-        <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase text-silver/40">
-          <Video className="w-3.5 h-3.5" />
-          <span>Video Coming Soon</span>
-        </div>
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{ backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 30px, hsl(var(--foreground)) 30px, hsl(var(--foreground)) 31px), repeating-linear-gradient(90deg, transparent, transparent 30px, hsl(var(--foreground)) 30px, hsl(var(--foreground)) 31px)" }}
-        />
-      </div>
-    )}
-  </div>
-);
-
 const TechnicalGallery = () => {
   const navigate = useNavigate();
+  const [active, setActive] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const goTo = (index: number) => {
+    setDirection(index > active ? 1 : -1);
+    setActive(index);
+  };
+
+  const prev = () => {
+    if (active > 0) goTo(active - 1);
+  };
+
+  const next = () => {
+    if (active < videos.length - 1) goTo(active + 1);
+  };
+
+  const video = videos[active];
 
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -89,16 +74,23 @@ const TechnicalGallery = () => {
       <main className="pt-[68px]">
         {/* Hero */}
         <section className="relative py-14 md:py-20 px-4 sm:px-6 md:px-16 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none opacity-30"
-            style={{ background: "radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--primary)/0.12), transparent)" }}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-30"
+            style={{
+              background:
+                "radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--primary)/0.12), transparent)",
+            }}
           />
           <div className="max-w-5xl mx-auto text-center relative z-10">
-            <motion.div {...fd(0)} className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-8 h-0.5 bg-accent-orange-2" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-accent-orange-2">
+            <motion.div
+              {...fd(0)}
+              className="flex items-center justify-center gap-3 mb-6"
+            >
+              <div className="w-8 h-0.5 bg-primary" />
+              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
                 Technical Gallery
               </span>
-              <div className="w-8 h-0.5 bg-accent-orange-2" />
+              <div className="w-8 h-0.5 bg-primary" />
             </motion.div>
             <motion.h1
               {...fd(0.1)}
@@ -112,75 +104,168 @@ const TechnicalGallery = () => {
               {...fd(0.2)}
               className="text-silver text-[15px] md:text-base leading-relaxed max-w-2xl mx-auto"
             >
-              See our capabilities in action — from raw steel to precision tooling.
-              Each video captures a stage of our engineering process, giving you
-              a transparent view of how Batara Techno Solutions delivers excellence.
+              See our capabilities in action — from raw steel to precision
+              tooling. Each video captures a stage of our engineering process,
+              giving you a transparent view of how Batara Techno Solutions
+              delivers excellence.
             </motion.p>
           </div>
         </section>
 
-        {/* Divider */}
-        <div className="w-full h-px bg-border mx-auto" />
+        <div className="w-full h-px bg-border" />
 
-        {/* Video sections — alternating layout */}
-        <section className="py-12 md:py-16 px-4 sm:px-6 md:px-16">
-          <div className="max-w-6xl mx-auto space-y-16 md:space-y-28">
-            {videos.map((video, i) => {
-              const isEven = i % 2 === 0;
-              return (
+        {/* Featured Video Showcase */}
+        <section className="py-12 md:py-16 px-4 sm:px-6 md:px-12">
+          <div className="max-w-5xl mx-auto">
+
+            {/* Video Player */}
+            <motion.div {...fd(0)} className="relative w-full">
+              {/* Nav arrows */}
+              <button
+                onClick={prev}
+                disabled={active === 0}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-10 w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center shadow-md hover:bg-secondary transition-colors disabled:opacity-30 disabled:cursor-not-allowed hidden md:flex"
+              >
+                <ChevronLeft className="w-5 h-5 text-foreground" />
+              </button>
+              <button
+                onClick={next}
+                disabled={active === videos.length - 1}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10 w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center shadow-md hover:bg-secondary transition-colors disabled:opacity-30 disabled:cursor-not-allowed hidden md:flex"
+              >
+                <ChevronRight className="w-5 h-5 text-foreground" />
+              </button>
+
+              <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
-                  key={video.title}
-                  {...fadeUp}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center ${
-                    !isEven ? "lg:[direction:rtl]" : ""
+                  key={active}
+                  custom={direction}
+                  initial={{ opacity: 0, x: direction * 60 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: direction * -60 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="w-full rounded-2xl overflow-hidden border border-border bg-card shadow-[0_8px_60px_hsl(var(--primary)/0.12)] aspect-video"
+                >
+                  <video
+                    key={video.src}
+                    src={video.src}
+                    controls
+                    className="w-full h-full object-cover"
+                    title={video.title}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Video Details */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`details-${active}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="mt-8 text-center"
+              >
+                {/* Label */}
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <div className="w-1 h-5 rounded-full bg-primary" />
+                  <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-primary">
+                    {video.label}
+                  </span>
+                  <div className="w-1 h-5 rounded-full bg-primary" />
+                </div>
+
+                {/* Title */}
+                <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4 leading-tight">
+                  {video.title}
+                </h2>
+
+                {/* Description */}
+                <p className="text-silver text-[15px] leading-relaxed max-w-2xl mx-auto mb-6">
+                  {video.description}
+                </p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap justify-center gap-2">
+                  {video.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-mono text-[10px] tracking-wider uppercase px-3 py-1 rounded border border-primary/30 text-primary bg-primary/5"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Dot + mobile arrow navigation */}
+            <div className="flex items-center justify-center gap-4 mt-10">
+              {/* Mobile prev */}
+              <button
+                onClick={prev}
+                disabled={active === 0}
+                className="md:hidden w-9 h-9 rounded-full bg-card border border-border flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="w-4 h-4 text-foreground" />
+              </button>
+
+              {/* Dots */}
+              <div className="flex items-center gap-2">
+                {videos.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => goTo(i)}
+                    className={`rounded-full transition-all duration-300 ${
+                      i === active
+                        ? "w-6 h-2.5 bg-primary"
+                        : "w-2.5 h-2.5 bg-border hover:bg-muted-foreground"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Mobile next */}
+              <button
+                onClick={next}
+                disabled={active === videos.length - 1}
+                className="md:hidden w-9 h-9 rounded-full bg-card border border-border flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <ChevronRight className="w-4 h-4 text-foreground" />
+              </button>
+            </div>
+
+            {/* Video thumbnails strip */}
+            <div className="flex gap-3 mt-8 justify-center">
+              {videos.map((v, i) => (
+                <button
+                  key={i}
+                  onClick={() => goTo(i)}
+                  className={`relative flex-1 max-w-[160px] aspect-video rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                    i === active
+                      ? "border-primary shadow-[0_0_16px_hsl(var(--primary)/0.35)]"
+                      : "border-border opacity-60 hover:opacity-90"
                   }`}
                 >
-                  {/* Video */}
-                  <div className={!isEven ? "lg:[direction:ltr]" : ""}>
-                    <VideoPlaceholder src={video.src} title={video.title} />
-                  </div>
-
-                  {/* Description */}
-                  <div className={`space-y-5 ${!isEven ? "lg:[direction:ltr]" : ""}`}>
-                    <div className="flex items-center gap-3">
-                      <div className="w-1 h-7 rounded-full bg-accent-orange-2" />
-                      <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-accent-orange-2">
-                        {video.label}
-                      </span>
-                    </div>
-
-                    <h2 className="section-title text-foreground">
-                      {video.title}
-                    </h2>
-
-                    <p className="text-silver text-[15px] leading-relaxed">
-                      {video.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 pt-1">
-                      {video.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="font-mono text-[10px] tracking-wider uppercase px-3 py-1 rounded border border-accent-orange-2/30 text-accent-orange-2 bg-accent-orange-2/5"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+                  <video
+                    src={v.src}
+                    className="w-full h-full object-cover pointer-events-none"
+                    muted
+                  />
+                  <div className="absolute inset-0 bg-[#060c1a]/40" />
+                  <span className="absolute bottom-1 left-0 right-0 text-center font-mono text-[8px] uppercase tracking-wider text-white/80 px-1 leading-tight">
+                    {v.label}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Bottom CTA */}
-        <section className="py-14 md:py-20 px-4 sm:px-6 md:px-16 border-t border-border">
-          <motion.div
-            {...fadeUp}
-            className="max-w-3xl mx-auto text-center"
-          >
+        <section className="py-14 md:py-20 px-4 sm:px-6 md:px-16 border-t border-border mt-6">
+          <motion.div {...fd(0)} className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-5">
               <div className="w-8 h-0.5 bg-primary" />
               <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-primary">
@@ -188,16 +273,16 @@ const TechnicalGallery = () => {
               </span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="section-title text-foreground mb-4">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
               READY TO START YOUR PROJECT?
             </h2>
             <p className="text-silver text-[15px] leading-relaxed mb-8">
-              Let our engineering team review your requirements and propose a solution.
-              From concept to delivery — we handle it all.
+              Let our engineering team review your requirements and propose a
+              solution. From concept to delivery — we handle it all.
             </p>
             <button
               onClick={handleContactClick}
-              className="inline-flex items-center gap-2 px-8 py-3 bg-primary rounded text-primary-foreground text-sm font-semibold tracking-wide hover:bg-accent-orange-2 hover:-translate-y-px hover:shadow-[0_6px_20px_hsl(0_78%_48%/0.35)] transition-all"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-primary rounded text-primary-foreground text-sm font-semibold tracking-wide hover:bg-accent hover:-translate-y-px hover:shadow-[0_6px_20px_hsl(var(--primary)/0.35)] transition-all"
             >
               Request a Prototype
             </button>
