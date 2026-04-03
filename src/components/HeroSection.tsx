@@ -60,7 +60,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="font-display font-extrabold text-[28px] sm:text-[40px] md:text-[52px] lg:text-[clamp(40px,5vw,68px)] leading-[1.03] tracking-tight text-white mb-5"
+            className="font-display font-bold text-[28px] sm:text-[40px] md:text-[52px] lg:text-[clamp(40px,5vw,68px)] leading-[1.03] tracking-tight text-white mb-5"
           >
             YOU DEFINE
             <br />

@@ -93,9 +93,9 @@ const Navbar = () => {
         </li>
 
         <li>
-          <a href="#" className="text-[13px] font-medium tracking-wider uppercase text-silver hover:text-foreground transition-colors">
+          <Link to="/careers" className="text-[13px] font-medium tracking-wider uppercase text-silver hover:text-foreground transition-colors">
             Careers
-          </a>
+          </Link>
         </li>
 
         <li>
@@ -169,9 +169,9 @@ const Navbar = () => {
             </div>
           )}
 
-          <a href="#" className="text-sm font-medium uppercase tracking-wider text-silver hover:text-foreground transition-colors py-1">
+          <Link to="/careers" className="text-sm font-medium uppercase tracking-wider text-silver hover:text-foreground transition-colors py-1">
             Careers
-          </a>
+          </Link>
 
           <NavLink
             to="/about"
