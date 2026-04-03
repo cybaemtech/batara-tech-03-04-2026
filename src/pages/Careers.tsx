@@ -110,7 +110,7 @@ const Careers = () => {
         {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/industry-aerospace.jpg')" }}
+          style={{ backgroundImage: "url('/careers-hero-bg.png')" }}
         />
         {/* Dark overlay — same depth as hero video overlay */}
         <div className="absolute inset-0 bg-[#060c1a]/70" />

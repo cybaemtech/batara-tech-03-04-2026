@@ -33,13 +33,13 @@ const standards = [
 const executives = [
   {
     name: "Sacheen",
-    image: "/executives/icon-sacheen.png",
+    image: "/executives/icon-vipin.png",
     email: "sacheen@bataratechnosolutions.com",
     desc: "Sacheen drives the visual and operational proof of our capabilities. Dedicated to showcasing real-world manufacturing achievements, he ensures that our engineering solutions—from space simulation models to advanced food processing designs—are clearly communicated and validated through tangible deliverables, technical animations, and verified client testimonials.",
   },
   {
     name: "Dileesh",
-    image: "/executives/icon-dileesh.png",
+    image: "/executives/icon-vipin.png",
     email: "dileesh@bataratechnosolutions.com",
     desc: "As a core pillar of our executive team, Dileesh champions our End-to-End (E-2-E) solution ecosystem. He ensures seamless integration across our horizontal services—including Product Design, Manufacturing, Analysis, and Production Support—guaranteeing that every project transitions flawlessly from the detailed design phase to a fully realized prototype and final product.",
   },
@@ -64,7 +64,9 @@ const AboutUs = () => {
     e.preventDefault();
     navigate("/");
     setTimeout(() => {
-      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+      document
+        .getElementById("contact")
+        ?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
 
@@ -87,20 +89,23 @@ const AboutUs = () => {
               ENGINEERING REALITY, TOGETHER.
             </h1>
             <p className="text-muted-foreground text-[15px] leading-relaxed max-w-2xl mx-auto mb-6">
-              At Batara Techno Solutions, we do not just conceptualize; we manufacture. Built specifically for the
-              demands of OEMs, Tier-1, and Tier-2 organizations, we bridge the critical gap between theoretical design
-              and shop-floor reality.
+              At Batara Techno Solutions, we do not just conceptualize; we
+              manufacture. Built specifically for the demands of OEMs, Tier-1,
+              and Tier-2 organizations, we bridge the critical gap between
+              theoretical design and shop-floor reality.
             </p>
             <p className="text-muted-foreground text-[15px] leading-relaxed max-w-2xl mx-auto mb-8">
-              Our foundation is built on a single, uncompromising promise: By partnering with premier electronics and
-              mechanical organizations, we operate as a complete{" "}
+              Our foundation is built on a single, uncompromising promise: By
+              partnering with premier electronics and mechanical organizations,
+              we operate as a complete{" "}
               <Link
                 to="/#services"
                 className="text-primary underline underline-offset-4 hover:text-accent-orange-2 transition-colors"
               >
                 End-to-End (E-2-E) Solution Ecosystem
               </Link>
-              —taking your problem statement from the ideation phase through to final production support.
+              —taking your problem statement from the ideation phase through to
+              final production support.
             </p>
             <div className="inline-block border border-primary/40 bg-primary/5 rounded-lg px-6 py-3">
               <span className="font-display font-bold text-primary text-lg tracking-wide">
@@ -135,9 +140,13 @@ const AboutUs = () => {
                 transition={{ delay: i * 0.08 }}
                 className="bg-accent/60 border border-primary-foreground/10 rounded-lg p-6 text-center hover:border-primary/30 transition-colors"
               >
-                <div className="font-display font-bold text-primary-foreground text-lg mb-2">{v.name}</div>
+                <div className="font-display font-bold text-primary-foreground text-lg mb-2">
+                  {v.name}
+                </div>
                 {v.years && (
-                  <div className="font-mono text-xs text-accent-orange-2 tracking-wider font-semibold">{v.years}</div>
+                  <div className="font-mono text-xs text-accent-orange-2 tracking-wider font-semibold">
+                    {v.years}
+                  </div>
                 )}
               </motion.div>
             ))}
@@ -172,8 +181,12 @@ const AboutUs = () => {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
                   <s.icon className="w-5 h-5 text-accent-orange-2" />
                 </div>
-                <h3 className="font-display font-bold text-foreground text-lg mb-2">{s.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+                <h3 className="font-display font-bold text-foreground text-lg mb-2">
+                  {s.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {s.desc}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -213,8 +226,12 @@ const AboutUs = () => {
                     />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-primary-foreground text-lg">{exec.name}</h3>
-                    <p className="font-mono text-[11px] text-primary tracking-wider uppercase">Executive Head</p>
+                    <h3 className="font-display font-bold text-primary-foreground text-lg">
+                      {exec.name}
+                    </h3>
+                    <p className="font-mono text-[11px] text-primary tracking-wider uppercase">
+                      Executive Head
+                    </p>
                   </div>
                 </div>
                 <a
@@ -224,7 +241,9 @@ const AboutUs = () => {
                   <Mail className="w-3.5 h-3.5" />
                   {exec.email}
                 </a>
-                <p className="text-primary-foreground/70 text-sm leading-relaxed">{exec.desc}</p>
+                <p className="text-primary-foreground/70 text-sm leading-relaxed">
+                  {exec.desc}
+                </p>
               </motion.div>
             ))}
           </div>
