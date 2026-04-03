@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import { Shield, Award, Eye, Users, Mail, ArrowRight, Clapperboard, Share2, Wrench } from "lucide-react";
+import { Shield, Award, Eye, Users, Mail, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -33,19 +33,19 @@ const standards = [
 const executives = [
   {
     name: "Sacheen",
-    icon: Clapperboard,
+    image: "/executives/sacheen.png",
     email: "sacheen@bataratechnosolutions.com",
     desc: "Sacheen drives the visual and operational proof of our capabilities. Dedicated to showcasing real-world manufacturing achievements, he ensures that our engineering solutions—from space simulation models to advanced food processing designs—are clearly communicated and validated through tangible deliverables, technical animations, and verified client testimonials.",
   },
   {
     name: "Dileesh",
-    icon: Share2,
+    image: "/executives/dileesh.png",
     email: "dileesh@bataratechnosolutions.com",
     desc: "As a core pillar of our executive team, Dileesh champions our End-to-End (E-2-E) solution ecosystem. He ensures seamless integration across our horizontal services—including Product Design, Manufacturing, Analysis, and Production Support—guaranteeing that every project transitions flawlessly from the detailed design phase to a fully realized prototype and final product.",
   },
   {
     name: "Vipin Kalathil",
-    icon: Wrench,
+    image: "/executives/vipin.png",
     email: "vipin@bataratechnosolutions.com",
     desc: "Vipin oversees the rigorous standards that define Batara Techno Solutions. He ensures that our deep expertise across verticals like Automotive, Aerospace, and Medical is applied precisely to our manufacturing capabilities, including Sheet Metal Design, Plastic Moulding, Casting, and Tool Designing. His focus is on maintaining our ISO-certified quality, ensuring milestone achievements, and delivering on-time results.",
   },
@@ -205,8 +205,12 @@ const AboutUs = () => {
                 className="bg-accent/60 border border-primary-foreground/10 rounded-lg p-6 hover:border-primary/30 transition-colors"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="h-14 w-14 rounded-full border-2 border-primary/40 bg-primary/10 flex items-center justify-center shrink-0 shadow-[0_0_20px_hsl(var(--primary)/0.15)]">
-                    <exec.icon className="w-6 h-6 text-primary" />
+                  <div className="h-16 w-16 rounded-full border-2 border-primary/40 shrink-0 shadow-[0_0_20px_hsl(var(--primary)/0.2)] overflow-hidden">
+                    <img
+                      src={exec.image}
+                      alt={exec.name}
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
                   <div>
                     <h3 className="font-display font-bold text-primary-foreground text-lg">{exec.name}</h3>
