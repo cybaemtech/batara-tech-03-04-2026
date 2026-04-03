@@ -116,7 +116,7 @@ const HeroSection = () => {
         </div>
 
         {/* RIGHT — orbit animation */}
-        <div className="flex justify-center items-center py-10 lg:py-0 lg:pr-16 xl:pr-20 flex-shrink-0">
+        <div className="flex justify-center items-center py-10 lg:py-0 lg:pr-6 xl:pr-10 flex-shrink-0 lg:ml-8 xl:ml-12">
           <OrbitAnimation />
         </div>
       </div>
