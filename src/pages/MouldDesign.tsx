@@ -202,7 +202,7 @@ const TabProcess = () => (
   <div className="space-y-10">
     <div className="text-center">
       <Label text="Project Running Process" />
-      <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">DEDICATED PROJECT MANAGEMENT</h2>
+      <h2 className="section-title text-foreground mb-4">DEDICATED PROJECT MANAGEMENT</h2>
       <p className="text-silver max-w-2xl mx-auto text-[15px] leading-relaxed">
         Effective project management is essential for program success. Our dedicated project managers bring
         extensive expertise in the mould industry, ensuring seamless execution and deep technical understanding.
@@ -241,7 +241,7 @@ const TabDFM = () => (
   <div className="space-y-10">
     <div className="text-center">
       <Label text="DFM Analysis" />
-      <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">DESIGN FOR MANUFACTURABILITY</h2>
+      <h2 className="section-title text-foreground mb-4">DESIGN FOR MANUFACTURABILITY</h2>
       <p className="text-silver max-w-2xl mx-auto text-[15px] leading-relaxed">
         Before a single cavity is cut, we interrogate every geometry for manufacturability risk. Our DFM
         reports identify draw direction, undercut features, lifter & slider requirements, ejection
@@ -280,7 +280,7 @@ const TabGrill = () => (
   <div className="space-y-10">
     <div className="text-center">
       <Label text="Mould Design Example 01" />
-      <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">GRILL MESH MOULD DESIGN</h2>
+      <h2 className="section-title text-foreground mb-4">GRILL MESH MOULD DESIGN</h2>
       <p className="text-silver max-w-xl mx-auto text-[15px]">
         A complete mould design with full mechanisms — fixed half, moving half, lifter systems,
         and ejection layout — engineered to exact production specification.
@@ -344,7 +344,7 @@ const TabAssembly = () => (
   <div className="space-y-10">
     <div className="text-center">
       <Label text="Mould Base & Assembly" />
-      <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">FROM CAD TO MACHINED STEEL</h2>
+      <h2 className="section-title text-foreground mb-4">FROM CAD TO MACHINED STEEL</h2>
       <p className="text-silver max-w-xl mx-auto text-[15px]">
         Our mould bases are precision-machined in-house and assembled to tight tolerances — every component
         verified before first trial.
@@ -377,7 +377,7 @@ const TabMotor = () => (
   <div className="space-y-10">
     <div className="text-center">
       <Label text="Mould Design Example 02" />
-      <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">MOTOR HOUSING MOULD</h2>
+      <h2 className="section-title text-foreground mb-4">MOTOR HOUSING MOULD</h2>
       <p className="text-silver max-w-xl mx-auto text-[15px]">
         A complex 2-cavity mould in high-glass-fibre PA66+30GF — engineered for structural integrity
         and long-run production stability.
@@ -420,7 +420,7 @@ const TabMoldflow = () => (
   <div className="space-y-10">
     <div className="text-center">
       <Label text="Simulation" />
-      <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">MOLDFLOW ANALYSIS SUPPORT</h2>
+      <h2 className="section-title text-foreground mb-4">MOLDFLOW ANALYSIS SUPPORT</h2>
       <p className="text-silver max-w-2xl mx-auto text-[15px] leading-relaxed">
         We simulate plastic flow before steel is cut. Our Moldflow analysis predicts fill imbalances,
         pressure drops, weld line locations, cooling time requirements, and warpage — giving you a
@@ -543,7 +543,7 @@ const TabVMC = () => (
   <div className="space-y-10">
     <div className="text-center">
       <Label text="In-House Manufacturing" />
-      <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">VMC MACHINE CAPABILITIES</h2>
+      <h2 className="section-title text-foreground mb-4">VMC MACHINE CAPABILITIES</h2>
       <p className="text-silver max-w-2xl mx-auto text-[15px]">
         Our in-house Vertical Machining Centres eliminate third-party dependency for cavity and core
         machining — delivering speed, accuracy, and complete process control.
@@ -584,7 +584,7 @@ const TabPress = () => (
   <div className="space-y-10">
     <div className="text-center">
       <Label text="Solutions in Action" />
-      <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">PRESS TOOL DESIGN</h2>
+      <h2 className="section-title text-foreground mb-4">PRESS TOOL DESIGN</h2>
       <p className="text-silver max-w-2xl mx-auto text-[15px]">
         From single-stage pierce dies to complete transfer die sequences for automotive body panels —
         our press tool engineering covers the full spectrum of sheet metal forming complexity.
@@ -759,7 +759,7 @@ const TabTrial = () => (
   <div className="space-y-10">
     <div className="text-center">
       <Label text="Trial Press Facility" />
-      <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">IN-HOUSE TRIAL PRESS DETAILS</h2>
+      <h2 className="section-title text-foreground mb-4">IN-HOUSE TRIAL PRESS DETAILS</h2>
       <p className="text-silver max-w-xl mx-auto text-[15px]">
         Tools are trialled on our own press floor before customer handover — ensuring first-hit accuracy
         and reducing your validation cycle.
@@ -954,7 +954,7 @@ const MouldDesign = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp} className="text-center mb-12">
             <LabelLight text="Why Batara" />
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-primary-foreground mb-4">
+            <h2 className="section-title text-primary-foreground mb-4">
               THE COMPLETE ADVANTAGE
             </h2>
             <p className="text-primary-foreground/70 max-w-xl mx-auto text-[15px]">
@@ -983,7 +983,7 @@ const MouldDesign = () => {
       {/* ── CTA ── */}
       <section className="relative z-[1] py-14 md:py-20 px-4 sm:px-8 md:px-16">
         <motion.div {...fadeUp} className="max-w-3xl mx-auto text-center">
-          <h2 className="font-display text-2xl md:text-3xl font-extrabold text-foreground mb-4">
+          <h2 className="section-title text-foreground mb-4">
             Ready for a Detailed Presentation & Demo?
           </h2>
           <p className="text-silver text-[15px] mb-8">

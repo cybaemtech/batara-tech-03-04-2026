@@ -98,6 +98,11 @@
   .font-mono-brand {
     font-family: 'JetBrains Mono', monospace;
   }
+
+  /* Unified section title — apply to every h2 section heading sitewide */
+  .section-title {
+    @apply font-display text-3xl md:text-4xl font-extrabold leading-tight tracking-tight;
+  }
 }
 
 /* Animations */

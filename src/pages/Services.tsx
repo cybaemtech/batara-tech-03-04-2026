@@ -188,7 +188,7 @@ const Services = () => {
               </span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-primary-foreground mb-4">
+            <h2 className="section-title text-primary-foreground mb-4">
               TECHNICAL ANIMATION & SIMULATION
             </h2>
             <p className="text-primary-foreground/70 max-w-2xl mx-auto text-[15px] leading-relaxed">
@@ -246,7 +246,7 @@ const Services = () => {
               </span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">
+            <h2 className="section-title text-foreground mb-4">
               THE E-2-E SOLUTION ECOSYSTEM
             </h2>
             <p className="text-silver max-w-xl mx-auto text-[15px] leading-relaxed">
@@ -294,7 +294,7 @@ const Services = () => {
               </span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-primary-foreground mb-4">
+            <h2 className="section-title text-primary-foreground mb-4">
               CORE ENGINEERING CAPABILITIES
             </h2>
             <p className="text-primary-foreground/70 max-w-xl mx-auto text-[15px]">
@@ -338,7 +338,7 @@ const Services = () => {
               </span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">
+            <h2 className="section-title text-foreground mb-4">
               THE BATARA DELIVERY STANDARD
             </h2>
             <p className="text-silver max-w-xl mx-auto text-[15px]">
@@ -370,7 +370,7 @@ const Services = () => {
       {/* Dual CTA */}
       <section className="relative z-[1] py-14 md:py-20 px-4 sm:px-8 md:px-16">
         <motion.div {...fadeUp} className="max-w-3xl mx-auto text-center">
-          <h2 className="font-display text-2xl md:text-3xl font-extrabold text-foreground mb-4">
+          <h2 className="section-title text-foreground mb-4">
             Got a Problem No One Else Could Solve? Bring It to Us.
           </h2>
           <p className="text-silver text-[15px] mb-8">

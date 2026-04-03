@@ -150,7 +150,7 @@ const TechnicalGallery = () => {
                       </span>
                     </div>
 
-                    <h2 className="font-display text-2xl md:text-3xl font-extrabold text-foreground leading-snug">
+                    <h2 className="section-title text-foreground">
                       {video.title}
                     </h2>
 
@@ -188,7 +188,7 @@ const TechnicalGallery = () => {
               </span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">
+            <h2 className="section-title text-foreground mb-4">
               READY TO START YOUR PROJECT?
             </h2>
             <p className="text-silver text-[15px] leading-relaxed mb-8">

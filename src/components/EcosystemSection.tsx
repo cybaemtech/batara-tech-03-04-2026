@@ -39,7 +39,7 @@ const EcosystemSection = () => {
             </span>
             <div className="w-8 h-0.5 bg-primary" />
           </div>
-          <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">
+          <h2 className="section-title text-foreground mb-4">
             END-TO-END <br /> ENGINEERING ECOSYSTEM
           </h2>
           <p className="text-silver max-w-xl mx-auto text-[15px] leading-relaxed">

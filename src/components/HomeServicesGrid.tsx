@@ -88,7 +88,7 @@ const HomeServicesGrid = () => {
             </span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground leading-tight">
+            <h2 className="section-title text-foreground">
               END-TO-END ENGINEERING,<br className="hidden sm:block" /> ACROSS EVERY DISCIPLINE
             </h2>
             <Link

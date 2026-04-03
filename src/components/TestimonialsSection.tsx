@@ -39,7 +39,7 @@ const TestimonialsSection = () => {
             </span>
             <div className="w-8 h-0.5 bg-primary" />
           </div>
-          <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground">WHAT OUR CLIENTS SAY</h2>
+          <h2 className="section-title text-foreground">WHAT OUR CLIENTS SAY</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

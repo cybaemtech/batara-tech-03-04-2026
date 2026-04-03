@@ -122,7 +122,7 @@ const AboutUs = () => {
               </span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-primary-foreground">
+            <h2 className="section-title text-primary-foreground">
               DECADES OF BATTLE-TESTED EXPERIENCE
             </h2>
           </motion.div>
@@ -156,7 +156,7 @@ const AboutUs = () => {
               </span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground">
+            <h2 className="section-title text-foreground">
               PROTECTING YOUR INVESTMENT
             </h2>
           </motion.div>
@@ -191,7 +191,7 @@ const AboutUs = () => {
               </span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-primary-foreground">
+            <h2 className="section-title text-primary-foreground">
               DRIVEN BY PRECISION & TRANSPARENCY
             </h2>
           </motion.div>

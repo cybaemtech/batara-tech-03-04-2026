@@ -21,7 +21,7 @@ const ContactSection = () => {
             </span>
             <div className="w-8 h-0.5 bg-primary" />
           </div>
-          <h2 className="font-display text-3xl md:text-4xl font-extrabold text-primary-foreground mb-4">
+          <h2 className="section-title text-primary-foreground mb-4">
             GOT AN ENGINEERING CHALLENGE? LET'S CRACK IT.
           </h2>
           <p className="text-primary-foreground/70 max-w-lg mx-auto text-[15px]">

@@ -73,7 +73,7 @@ const ServicesSection = () => {
             </span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-primary-foreground leading-tight">
+            <h2 className="section-title text-primary-foreground">
               INDUSTRIES WE SERVE
             </h2>
             <Link

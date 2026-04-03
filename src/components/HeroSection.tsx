@@ -42,7 +42,6 @@ const HeroSection = () => {
       {/* ── Main content layout ─────────────────────────────────────── */}
       {/* Mobile: column (text → animation) | Desktop: row (text | animation) */}
       <div className="relative z-10 flex flex-col lg:flex-row lg:items-center min-h-[calc(100vh-76px)] px-6 sm:px-10 lg:px-0">
-
         {/* LEFT — text block */}
         <div className="flex flex-col justify-center flex-1 pt-10 pb-4 lg:pt-0 lg:pb-0 lg:pl-20 lg:max-w-2xl">
           <motion.div
@@ -70,7 +69,11 @@ const HeroSection = () => {
             <motion.span
               initial={{ opacity: 0, x: -20, filter: "blur(8px)" }}
               animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-              transition={{ duration: 1, delay: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{
+                duration: 1,
+                delay: 0.75,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
               className="text-[hsl(214_72%_65%)] inline-block"
             >
               WE ENGINEER
@@ -86,9 +89,13 @@ const HeroSection = () => {
             className="text-[13px] sm:text-[15px] leading-[1.75] text-white/70 max-w-lg mb-8 border-l-2 border-[hsl(214_72%_50%/0.7)] pl-4"
           >
             From raw problem to realized product: We{" "}
-            <strong className="text-white/90 font-medium">design the solution</strong>
+            <strong className="text-white/90 font-medium">
+              design the solution
+            </strong>
             , deliver the result, and anchor the support. Your{" "}
-            <strong className="text-white/90 font-medium">End-to-End Engineering Ecosystem.</strong>
+            <strong className="text-white/90 font-medium">
+              End-to-End Engineering Ecosystem.
+            </strong>
           </motion.p>
 
           <motion.div
@@ -116,7 +123,7 @@ const HeroSection = () => {
         </div>
 
         {/* RIGHT — orbit animation */}
-        <div className="flex justify-center items-center py-10 lg:py-0 lg:pr-6 xl:pr-10 flex-shrink-0 lg:ml-8 xl:ml-12">
+        <div className="flex justify-center items-center py-20 lg:py-0 lg:pr-48 xl:pr-56 flex-shrink-0 lg:ml-8 xl:ml-12">
           <OrbitAnimation />
         </div>
       </div>
@@ -157,9 +164,11 @@ const OrbitAnimation = () => (
     <div
       className="absolute rounded-full border border-[hsl(220_58%_60%/0.5)] shadow-[0_0_15px_hsl(220_58%_40%/0.3)]"
       style={{
-        top: "50%", left: "50%",
+        top: "50%",
+        left: "50%",
         transform: "translate(-50%,-50%)",
-        width: "42%", height: "42%",
+        width: "42%",
+        height: "42%",
         animation: "spin-slow 13s linear infinite",
       }}
     >
@@ -170,36 +179,78 @@ const OrbitAnimation = () => (
     <div
       className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center"
       style={{
-        background: "radial-gradient(circle, hsl(214 72% 50% / 0.4), hsl(214 72% 37% / 0.1))",
+        background:
+          "radial-gradient(circle, hsl(214 72% 50% / 0.4), hsl(214 72% 37% / 0.1))",
         border: "2px solid hsl(214 72% 65% / 0.6)",
-        boxShadow: "0 0 30px hsl(214 72% 37% / 0.4), 0 0 60px hsl(214 72% 37% / 0.15), inset 0 0 15px hsl(214 72% 50% / 0.15)",
+        boxShadow:
+          "0 0 30px hsl(214 72% 37% / 0.4), 0 0 60px hsl(214 72% 37% / 0.15), inset 0 0 15px hsl(214 72% 50% / 0.15)",
         animation: "core-pulse 3s ease-in-out infinite",
       }}
     >
-      <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.5" className="w-6 h-6 lg:w-7 lg:h-7">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="hsl(214 72% 85%)"
+        strokeWidth="1.5"
+        className="w-6 h-6 lg:w-7 lg:h-7"
+      >
         <path d="M12 2L2 7l10 5 10-5-10-5z" />
         <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
       </svg>
     </div>
 
     {/* Orbit nodes */}
-    <ONode pos="top-[2%] left-1/2 -translate-x-1/2" label="Concept & Design" delay={0.8}>
-      <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-4 h-4">
-        <circle cx="12" cy="12" r="3" /><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
+    <ONode
+      pos="top-[2%] left-1/2 -translate-x-1/2"
+      label="Concept & Design"
+      delay={0.8}
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="hsl(214 72% 85%)"
+        strokeWidth="1.8"
+        className="w-4 h-4"
+      >
+        <circle cx="12" cy="12" r="3" />
+        <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
       </svg>
     </ONode>
     <ONode pos="top-1/2 right-0 -translate-y-1/2" label="Analysis" delay={1.0}>
-      <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-4 h-4">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="hsl(214 72% 85%)"
+        strokeWidth="1.8"
+        className="w-4 h-4"
+      >
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
       </svg>
     </ONode>
-    <ONode pos="bottom-[2%] left-1/2 -translate-x-1/2" label="Prototype" delay={1.2}>
-      <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-4 h-4">
-        <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
+    <ONode
+      pos="bottom-[2%] left-1/2 -translate-x-1/2"
+      label="Prototype"
+      delay={1.2}
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="hsl(214 72% 85%)"
+        strokeWidth="1.8"
+        className="w-4 h-4"
+      >
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
       </svg>
     </ONode>
     <ONode pos="top-1/2 left-0 -translate-y-1/2" label="Production" delay={0.9}>
-      <svg viewBox="0 0 24 24" fill="none" stroke="hsl(214 72% 85%)" strokeWidth="1.8" className="w-4 h-4">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="hsl(214 72% 85%)"
+        strokeWidth="1.8"
+        className="w-4 h-4"
+      >
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
       </svg>
     </ONode>
@@ -212,7 +263,17 @@ const OrbitAnimation = () => (
   </motion.div>
 );
 
-const ONode = ({ pos, label, delay, children }: { pos: string; label: string; delay: number; children: React.ReactNode }) => (
+const ONode = ({
+  pos,
+  label,
+  delay,
+  children,
+}: {
+  pos: string;
+  label: string;
+  delay: number;
+  children: React.ReactNode;
+}) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.7 }}
     animate={{ opacity: 1, scale: 1 }}
