@@ -8,12 +8,21 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="bg-background">
+    <div style={{ background: "#060c1a" }}>
       <Navbar />
-      <div className="sticky top-0 z-0">
+      <div style={{ position: "sticky", top: 0, zIndex: 0 }}>
         <HeroSection />
       </div>
-      <div className="relative z-10 bg-background">
+      <div
+        className="bg-background"
+        style={{
+          position: "relative",
+          zIndex: 10,
+          borderRadius: "1.5rem 1.5rem 0 0",
+          boxShadow: "0 -40px 80px rgba(0,0,0,0.6)",
+          marginTop: "-1.5rem",
+        }}
+      >
         <TrustBar />
         <ServicesSection />
         <TestimonialsSection />
