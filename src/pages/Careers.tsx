@@ -254,7 +254,7 @@ const Careers = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="mailto:careers@bataratechnosolutions.com"
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-extrabold text-sm tracking-wide rounded-lg hover:bg-[hsl(214_72%_44%)] hover:-translate-y-0.5 hover:shadow-[0_12px_32px_hsl(214_72%_37%/0.5)] transition-all relative overflow-hidden"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-bold text-sm rounded-lg hover:bg-[hsl(214_72%_44%)] hover:-translate-y-0.5 hover:shadow-[0_12px_32px_hsl(214_72%_37%/0.5)] transition-all relative overflow-hidden"
               >
                 <span className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
                 <Mail className="w-4 h-4 relative" />
