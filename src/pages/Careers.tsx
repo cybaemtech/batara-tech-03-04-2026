@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Briefcase, Users, Zap, Shield, Star, MapPin, Clock, ChevronRight, Mail } from "lucide-react";
+import { ArrowRight, Briefcase, Users, Zap, Shield, Star, Mail } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -106,30 +106,37 @@ const Careers = () => {
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative z-[1] pt-28 md:pt-36 pb-20 md:pb-28 px-4 sm:px-8 md:px-16 bg-accent text-primary-foreground overflow-hidden">
+      <section className="relative z-[1] pt-28 md:pt-36 pb-20 md:pb-28 px-4 sm:px-8 md:px-16 text-white overflow-hidden min-h-[60vh] flex items-center">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/industry-aerospace.jpg')" }}
+        />
+        {/* Dark overlay — same depth as hero video overlay */}
+        <div className="absolute inset-0 bg-[#060c1a]/70" />
         {/* subtle grid */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-30"
+          className="absolute inset-0 pointer-events-none opacity-20"
           style={{
             backgroundImage:
               "linear-gradient(hsl(214 72% 55% / 0.08) 1px, transparent 1px), linear-gradient(90deg, hsl(214 72% 55% / 0.08) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
-        <div className="relative max-w-4xl mx-auto text-center">
+        <div className="relative w-full max-w-4xl mx-auto text-center">
           <motion.div {...fadeUp}>
             <div className="flex items-center justify-center gap-3 mb-5">
-              <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
+              <div className="w-8 h-0.5 bg-[hsl(214_72%_75%)]" />
+              <span className="font-mono text-[10px] sm:text-[11px] font-medium tracking-[0.15em] uppercase text-[hsl(214_72%_75%)]">
                 Careers at Batara
               </span>
-              <div className="w-8 h-0.5 bg-primary" />
+              <div className="w-8 h-0.5 bg-[hsl(214_72%_75%)]" />
             </div>
-            <h1 className="font-display font-extrabold text-[36px] sm:text-[48px] md:text-[60px] leading-[1.03] tracking-tight text-primary-foreground mb-6">
+            <h1 className="font-display font-bold text-[28px] sm:text-[40px] md:text-[52px] lg:text-[clamp(40px,5vw,68px)] leading-[1.03] tracking-tight text-white mb-5">
               BUILD WHAT OTHERS<br />
               <span className="text-[hsl(214_72%_65%)]">ONLY SIMULATE.</span>
             </h1>
-            <p className="text-primary-foreground/70 text-[15px] sm:text-[16px] leading-relaxed max-w-2xl mx-auto mb-8">
+            <p className="text-[13px] sm:text-[15px] leading-[1.75] text-white/70 max-w-xl mx-auto mb-8 border-l-2 border-[hsl(214_72%_50%/0.7)] pl-4 text-left">
               At Batara Techno Solutions, every engineer's output ends on a shop floor. If you want work that matters —
               that goes from your screen into aerospace hardware, automotive bodies, and medical instruments — this is your place.
             </p>
@@ -178,70 +185,6 @@ const Careers = () => {
                 </div>
                 <h3 className="font-display font-bold text-foreground text-base mb-2">{b.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{b.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Open Positions ───────────────────────────────────────── */}
-      <section className="relative z-[1] py-16 md:py-24 px-4 sm:px-8 md:px-16 bg-accent text-primary-foreground">
-        <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeUp} className="text-center mb-14">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
-                Open Roles
-              </span>
-              <div className="w-8 h-0.5 bg-primary" />
-            </div>
-            <h2 className="section-title text-primary-foreground mb-3">
-              CURRENT OPENINGS
-            </h2>
-            <p className="text-primary-foreground/60 text-[15px] max-w-xl mx-auto">
-              All roles are hands-on, cross-disciplinary, and production-oriented.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {openings.map((job, i) => (
-              <motion.div
-                key={job.title}
-                {...fadeUp}
-                transition={{ delay: i * 0.07 }}
-                className="bg-accent/60 border border-primary-foreground/10 rounded-lg p-6 hover:border-primary/40 hover:shadow-[0_4px_20px_hsl(214_72%_37%/0.15)] transition-all group"
-              >
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <h3 className="font-display font-bold text-primary-foreground text-lg leading-snug">
-                    {job.title}
-                  </h3>
-                  <ChevronRight className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:translate-x-1 transition-transform" />
-                </div>
-
-                <div className="flex flex-wrap gap-3 mb-3">
-                  <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-primary">
-                    <Briefcase className="w-3 h-3" />{job.team}
-                  </span>
-                  <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-primary-foreground/50">
-                    <Clock className="w-3 h-3" />{job.type}
-                  </span>
-                  <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-primary-foreground/50">
-                    <MapPin className="w-3 h-3" />{job.location}
-                  </span>
-                </div>
-
-                <p className="text-primary-foreground/65 text-sm leading-relaxed mb-4">{job.desc}</p>
-
-                <div className="flex flex-wrap gap-2">
-                  {job.tags.map(tag => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 bg-primary/15 border border-primary/25 rounded text-[10px] font-mono font-semibold tracking-wider text-primary uppercase"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </motion.div>
             ))}
           </div>
