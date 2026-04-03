@@ -85,7 +85,7 @@ const AboutUs = () => {
               </span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h1 className="font-display text-4xl md:text-5xl font-extrabold text-foreground mb-6">
               ENGINEERING REALITY, TOGETHER.
             </h1>
             <p className="text-muted-foreground text-[15px] leading-relaxed max-w-2xl mx-auto mb-6">
