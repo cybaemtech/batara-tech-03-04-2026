@@ -127,25 +127,25 @@ const TechnicalGallery = () => {
         </section>
 
         {/* Bottom CTA */}
-        <section className="py-14 md:py-20 px-4 sm:px-6 md:px-16 border-t border-border" style={{ background: "hsl(220, 14%, 93%)" }}>
+        <section className="bg-accent py-14 md:py-20 px-4 sm:px-6 md:px-16">
           <motion.div {...fd(0)} className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-5">
-              <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-primary">
+              <div className="w-8 h-0.5 bg-white/40" />
+              <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-white/60">
                 Get In Touch
               </span>
-              <div className="w-8 h-0.5 bg-primary" />
+              <div className="w-8 h-0.5 bg-white/40" />
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
               READY TO START YOUR PROJECT?
             </h2>
-            <p className="text-silver text-[15px] leading-relaxed mb-8">
+            <p className="text-white/65 text-[15px] leading-relaxed mb-8">
               Let our engineering team review your requirements and propose a
               solution. From concept to delivery — we handle it all.
             </p>
             <button
               onClick={handleContactClick}
-              className="inline-flex items-center gap-2 px-8 py-3 bg-primary rounded text-primary-foreground text-sm font-semibold tracking-wide hover:bg-accent hover:-translate-y-px hover:shadow-[0_6px_20px_hsl(var(--primary)/0.35)] transition-all"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-white rounded text-accent text-sm font-semibold tracking-wide hover:bg-white/90 hover:-translate-y-px hover:shadow-[0_6px_24px_rgba(0,0,0,0.25)] transition-all"
             >
               Request a Prototype
             </button>
