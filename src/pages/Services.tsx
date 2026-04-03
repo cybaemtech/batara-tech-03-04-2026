@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Play,
@@ -116,8 +117,18 @@ const proofPoints = [
   },
 ];
 
+const STEP_DURATION = 2000;
+
 const Services = () => {
   const navigate = useNavigate();
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % ecosystemSteps.length);
+    }, STEP_DURATION);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -254,31 +265,105 @@ const Services = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {ecosystemSteps.map((step, i) => (
-              <motion.div
-                key={step.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="relative group"
-              >
-                <div className="bg-card border border-border rounded-lg p-6 h-full hover:border-primary/30 transition-colors">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
-                    <step.icon className="w-5 h-5 text-accent-orange-2" />
-                  </div>
-                  <div className="font-mono text-[10px] tracking-[0.15em] uppercase text-accent mb-2">
-                    Step {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <h3 className="font-display font-bold text-foreground text-lg mb-2">{step.label}</h3>
-                  <p className="text-silver text-sm leading-relaxed">{step.desc}</p>
-                </div>
-                {i < ecosystemSteps.length - 1 && (
-                  <div className="hidden md:block absolute top-1/2 -right-3 text-silver text-lg">→</div>
-                )}
-              </motion.div>
+          {/* Progress dots */}
+          <div className="flex items-center justify-center gap-2 mb-8">
+            {ecosystemSteps.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveStep(i)}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  i === activeStep ? "w-8 bg-primary" : "w-2 bg-border hover:bg-primary/40"
+                }`}
+              />
             ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {ecosystemSteps.map((step, i) => {
+              const isActive = i === activeStep;
+              return (
+                <motion.div
+                  key={step.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="relative group cursor-pointer"
+                  onClick={() => setActiveStep(i)}
+                >
+                  <motion.div
+                    animate={{
+                      borderColor: isActive ? "hsl(var(--primary) / 0.6)" : "hsl(var(--border))",
+                      boxShadow: isActive
+                        ? "0 0 0 1px hsl(var(--primary)/0.3), 0 8px 32px hsl(var(--primary)/0.15)"
+                        : "none",
+                      y: isActive ? -4 : 0,
+                    }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="bg-card border rounded-lg p-6 h-full"
+                  >
+                    {/* Icon */}
+                    <motion.div
+                      animate={{
+                        backgroundColor: isActive ? "hsl(var(--primary))" : "hsl(var(--primary)/0.1)",
+                        borderColor: isActive ? "hsl(var(--primary))" : "hsl(var(--primary)/0.2)",
+                      }}
+                      transition={{ duration: 0.4 }}
+                      className="w-12 h-12 rounded-lg border flex items-center justify-center mb-4"
+                    >
+                      <motion.div
+                        animate={{ scale: isActive ? [1, 1.2, 1] : 1 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                      >
+                        <step.icon
+                          className={`w-5 h-5 transition-colors duration-300 ${
+                            isActive ? "text-white" : "text-accent-orange-2"
+                          }`}
+                        />
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Step label */}
+                    <div
+                      className={`font-mono text-[10px] tracking-[0.15em] uppercase mb-2 transition-colors duration-300 ${
+                        isActive ? "text-primary font-bold" : "text-accent"
+                      }`}
+                    >
+                      Step {String(i + 1).padStart(2, "0")}
+                    </div>
+
+                    <h3
+                      className={`font-display font-bold text-lg mb-2 transition-colors duration-300 ${
+                        isActive ? "text-primary" : "text-foreground"
+                      }`}
+                    >
+                      {step.label}
+                    </h3>
+                    <p className="text-silver text-sm leading-relaxed">{step.desc}</p>
+
+                    {/* Progress bar at card bottom */}
+                    {isActive && (
+                      <motion.div
+                        className="absolute bottom-0 left-0 h-0.5 bg-primary rounded-b-lg"
+                        initial={{ width: "0%" }}
+                        animate={{ width: "100%" }}
+                        transition={{ duration: STEP_DURATION / 1000, ease: "linear" }}
+                      />
+                    )}
+                  </motion.div>
+
+                  {i < ecosystemSteps.length - 1 && (
+                    <div
+                      className={`hidden md:block absolute top-1/2 -right-3 text-lg transition-colors duration-300 z-10 ${
+                        isActive ? "text-primary" : "text-silver"
+                      }`}
+                    >
+                      →
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
