@@ -1,0 +1,38 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "5k6TidBqQ25ajvpf_lIop"
+uri = "file://public/ind-automotive.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "ULI9gFm8Mj6RNjWFVQwRT"
+uri = "file://public/ind-aerospace.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "NKCqFXCu96OAj9xI3ZpD1"
+uri = "file://public/ind-electro.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "l_Iya6B3ewdsLo2TCxNFw"
+uri = "file://public/ind-medical.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "CHKmYXBvveTlj1vDig-YZ"
+uri = "file://public/ind-consumer.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "4l37zJdYzwrf2dy4gO94y"
+uri = "file://public/ind-heavy.png"
+type = "image"
+title = "generated_image"
