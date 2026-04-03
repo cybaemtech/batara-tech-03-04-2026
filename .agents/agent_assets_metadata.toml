@@ -54,3 +54,21 @@ id = "VO7RJ7n-yvnvBAXkFFZ3D"
 uri = "file://public/executives/vipin.png"
 type = "image"
 title = "vipin executive portrait"
+
+[[generated]]
+id = "IUSSM5e-ize606JYhAGmo"
+uri = "file://public/executives/icon-sacheen.png"
+type = "image"
+title = "user avatar icon blue"
+
+[[generated]]
+id = "-koX97VpodY6-H-ao_mBJ"
+uri = "file://public/executives/icon-dileesh.png"
+type = "image"
+title = "user avatar icon navy tie"
+
+[[generated]]
+id = "I4dY7c_LJxfo8BFu-VkVd"
+uri = "file://public/executives/icon-vipin.png"
+type = "image"
+title = "user avatar icon steel blue"

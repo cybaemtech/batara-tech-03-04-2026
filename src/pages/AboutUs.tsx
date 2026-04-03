@@ -33,19 +33,19 @@ const standards = [
 const executives = [
   {
     name: "Sacheen",
-    image: "/executives/sacheen.png",
+    image: "/executives/icon-sacheen.png",
     email: "sacheen@bataratechnosolutions.com",
     desc: "Sacheen drives the visual and operational proof of our capabilities. Dedicated to showcasing real-world manufacturing achievements, he ensures that our engineering solutions—from space simulation models to advanced food processing designs—are clearly communicated and validated through tangible deliverables, technical animations, and verified client testimonials.",
   },
   {
     name: "Dileesh",
-    image: "/executives/dileesh.png",
+    image: "/executives/icon-dileesh.png",
     email: "dileesh@bataratechnosolutions.com",
     desc: "As a core pillar of our executive team, Dileesh champions our End-to-End (E-2-E) solution ecosystem. He ensures seamless integration across our horizontal services—including Product Design, Manufacturing, Analysis, and Production Support—guaranteeing that every project transitions flawlessly from the detailed design phase to a fully realized prototype and final product.",
   },
   {
     name: "Vipin Kalathil",
-    image: "/executives/vipin.png",
+    image: "/executives/icon-vipin.png",
     email: "vipin@bataratechnosolutions.com",
     desc: "Vipin oversees the rigorous standards that define Batara Techno Solutions. He ensures that our deep expertise across verticals like Automotive, Aerospace, and Medical is applied precisely to our manufacturing capabilities, including Sheet Metal Design, Plastic Moulding, Casting, and Tool Designing. His focus is on maintaining our ISO-certified quality, ensuring milestone achievements, and delivering on-time results.",
   },
