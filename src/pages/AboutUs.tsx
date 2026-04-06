@@ -100,29 +100,42 @@ const AboutUs = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative z-[1] pt-28 md:pt-32 pb-16 md:pb-20 px-4 sm:px-8 md:px-16 bg-background">
-        <div className="max-w-4xl mx-auto text-center">
+      <section
+        className="relative z-[1] pt-28 md:pt-36 pb-20 md:pb-28 px-4 sm:px-8 md:px-16 overflow-hidden"
+        style={{
+          backgroundImage: "url('/about-hero-bg.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center 40%",
+        }}
+      >
+        {/* Dark gradient overlays — top fade from navbar, overall dark tint */}
+        <div className="absolute inset-0 bg-[#060c1a]/70 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060c1a]/60 via-transparent to-[#060c1a]/80 pointer-events-none" />
+        {/* Subtle vignette sides */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#060c1a]/50 via-transparent to-[#060c1a]/50 pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto text-center relative">
           <motion.div {...fadeUp}>
-            <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="flex items-center justify-center gap-3 mb-5">
               <div className="w-8 h-0.5 bg-primary" />
               <span className="section-label text-primary">About Us</span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-              ENGINEERING REALITY, TOGETHER.
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+              ENGINEERING REALITY,<br className="hidden sm:block" /> TOGETHER.
             </h1>
-            <p className="text-muted-foreground text-[15px] leading-relaxed max-w-2xl mx-auto mb-6">
+            <p className="text-white/65 text-[15px] leading-relaxed max-w-2xl mx-auto mb-5">
               At Batara Techno Solutions, we do not just conceptualize; we manufacture. Built specifically for the demands of OEMs, Tier-1, and Tier-2 organizations, we bridge the critical gap between theoretical design and shop-floor reality.
             </p>
-            <p className="text-muted-foreground text-[15px] leading-relaxed max-w-2xl mx-auto mb-8">
+            <p className="text-white/65 text-[15px] leading-relaxed max-w-2xl mx-auto mb-9">
               Our foundation is built on a single, uncompromising promise: By partnering with premier electronics and mechanical organizations, we operate as a complete{" "}
               <Link to="/#services" className="text-primary underline underline-offset-4 hover:text-accent-orange-2 transition-colors">
                 End-to-End (E-2-E) Solution Ecosystem
               </Link>
               —taking your problem statement from the ideation phase through to final production support.
             </p>
-            <div className="inline-block border border-primary/40 bg-primary/5 rounded-lg px-6 py-3">
-              <span className="font-display font-bold text-primary text-lg tracking-wide">
+            <div className="inline-block border border-primary/50 bg-primary/10 backdrop-blur-sm rounded-lg px-7 py-3.5">
+              <span className="font-display font-bold text-white text-lg tracking-wide">
                 FINAL DESIGNED PRODUCT = MANUFACTURED PRODUCT
               </span>
             </div>
