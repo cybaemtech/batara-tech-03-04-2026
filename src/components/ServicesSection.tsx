@@ -57,7 +57,7 @@ const ServicesSection = () => {
   return (
     <section
       id="services"
-      className="relative z-[1] py-16 md:py-24 px-4 sm:px-8 md:px-16 bg-accent text-primary-foreground"
+      className="relative z-[1] pt-16 md:pt-24 pb-24 md:pb-32 px-4 sm:px-8 md:px-16 bg-accent text-primary-foreground"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div

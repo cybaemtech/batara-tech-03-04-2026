@@ -1,7 +1,6 @@
 import type { CSSProperties } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import TrustBar from "@/components/TrustBar";
 import ServicesSection from "@/components/ServicesSection";
 import OurServicesSection from "@/components/OurServicesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -28,9 +27,8 @@ const Index = () => {
         <HeroSection />
       </div>
 
-      {/* Panel 1 — TrustBar + Industries We Serve */}
+      {/* Panel 1 — Industries We Serve */}
       <div className="bg-background" style={panelStyle(10, true)}>
-        <TrustBar />
         <ServicesSection />
       </div>
 

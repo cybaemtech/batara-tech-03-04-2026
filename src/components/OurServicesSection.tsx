@@ -91,7 +91,7 @@ const OurServicesSection = () => {
   const current = services[active];
 
   return (
-    <section id="our-services" className="relative z-[1] bg-background">
+    <section id="our-services" className="relative z-[1] bg-background pb-24 md:pb-32">
 
       {/* Top separator */}
       <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
