@@ -57,14 +57,14 @@ const ServicesSection = () => {
   return (
     <section
       id="services"
-      className="relative z-[1] pt-16 md:pt-24 pb-24 md:pb-32 px-4 sm:px-8 md:px-16 bg-accent text-primary-foreground"
+      className="relative z-[1] pt-12 md:pt-16 pb-16 md:pb-24 px-4 sm:px-8 md:px-16 bg-accent text-primary-foreground"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-14"
+          className="mb-8 md:mb-10"
         >
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-0.5 bg-primary" />
@@ -85,7 +85,7 @@ const ServicesSection = () => {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {industries.map((ind, i) => (
             <motion.div
               key={ind.name}
@@ -96,7 +96,7 @@ const ServicesSection = () => {
             >
               <Link
                 to={ind.href}
-                className="group relative flex flex-col justify-end min-h-[220px] rounded-xl overflow-hidden border border-white/10 hover:border-white/25 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)] transition-all duration-300"
+                className="group relative flex flex-col justify-end min-h-[160px] sm:min-h-[180px] lg:min-h-[190px] rounded-xl overflow-hidden border border-white/10 hover:border-white/25 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)] transition-all duration-300"
               >
                 {/* Background image */}
                 <div
@@ -115,7 +115,7 @@ const ServicesSection = () => {
 
                 {/* Icon top-left */}
                 <div
-                  className="absolute top-4 right-4 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                  className="absolute top-3 right-3 w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110"
                   style={{
                     background: `${ind.accent}33`,
                     border: `1px solid ${ind.accent}60`,
@@ -126,12 +126,12 @@ const ServicesSection = () => {
                 </div>
 
                 {/* Text content */}
-                <div className="relative z-10 p-5">
-                  <h3 className="font-display font-bold text-white text-lg leading-tight mb-1">
+                <div className="relative z-10 p-3 sm:p-4">
+                  <h3 className="font-display font-bold text-white text-sm sm:text-base lg:text-[15px] leading-tight mb-1">
                     {ind.name}
                   </h3>
                   {ind.years && (
-                    <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-white/60">
+                    <p className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-white/60">
                       {ind.years} experience
                     </p>
                   )}
