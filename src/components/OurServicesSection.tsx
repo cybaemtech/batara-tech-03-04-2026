@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Compass, Factory, GitBranch, Film, CircuitBoard } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -88,18 +88,16 @@ const services = [
 
 const OurServicesSection = () => {
   const [active, setActive] = useState(0);
-  const sectionRef = useRef(null);
-
   const current = services[active];
 
   return (
-    <section
-      ref={sectionRef}
-      id="our-services"
-      className="relative z-[1] py-16 md:py-24 bg-background"
-    >
+    <section id="our-services" className="relative z-[1] bg-background">
+
+      {/* Top separator */}
+      <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
       {/* Section header */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-16 mb-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-16 pt-16 md:pt-24 pb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -108,14 +106,10 @@ const OurServicesSection = () => {
         >
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-0.5 bg-primary" />
-            <span className="section-label text-primary">
-              What We Do
-            </span>
+            <span className="section-label text-primary">What We Do</span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h2 className="section-title text-foreground">
-              OUR SERVICES
-            </h2>
+            <h2 className="section-title text-foreground">OUR SERVICES</h2>
             <Link
               to="/services"
               className="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:gap-3 transition-all shrink-0"
@@ -126,144 +120,128 @@ const OurServicesSection = () => {
         </motion.div>
       </div>
 
-      {/* Main layout */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-16">
-        <div className="flex flex-col lg:flex-row gap-0 border border-border rounded-2xl overflow-hidden shadow-sm">
+      {/* Full-width tabs + content layout */}
+      <div className="flex flex-col lg:flex-row border-t border-border">
 
-          {/* Left tabs */}
-          <div className="lg:w-[300px] shrink-0 bg-accent flex flex-col relative">
-            {/* Top decorative line */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-            {services.map((svc, i) => {
-              const isActive = i === active;
-              const num = String(i + 1).padStart(2, "0");
-              return (
-                <button
-                  key={svc.id}
-                  onClick={() => setActive(i)}
-                  className={`group relative flex flex-col px-7 py-6 text-left transition-all duration-250 border-b border-white/[0.07] last:border-b-0 overflow-hidden ${
-                    isActive ? "bg-primary/90" : "hover:bg-white/[0.04]"
-                  }`}
-                >
-                  {/* Active right accent bar */}
-                  <div
-                    className={`absolute right-0 top-0 bottom-0 w-[3px] rounded-l-full transition-all duration-300 ${
-                      isActive ? "bg-white/50 opacity-100" : "opacity-0"
-                    }`}
-                  />
-
-                  {/* Active background shimmer */}
-                  {isActive && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/80 pointer-events-none" />
-                  )}
-
-                  <div className="relative flex items-start gap-4">
-                    {/* Number */}
-                    <span
-                      className={`font-mono text-[11px] font-bold tracking-[0.2em] mt-0.5 shrink-0 transition-colors duration-200 ${
-                        isActive ? "text-white/60" : "text-white/25 group-hover:text-white/40"
-                      }`}
-                    >
-                      {num}
-                    </span>
-
-                    <div className="flex flex-col gap-1">
-                      {/* Label */}
-                      <span
-                        className={`font-display text-[13px] font-bold leading-snug tracking-wide transition-colors duration-200 ${
-                          isActive
-                            ? "text-white"
-                            : "text-white/55 group-hover:text-white/80"
-                        }`}
-                      >
-                        {svc.label}
-                      </span>
-
-                      {/* Underline indicator */}
-                      <div
-                        className={`h-px bg-white/30 transition-all duration-300 ${
-                          isActive ? "w-8 opacity-100" : "w-0 opacity-0"
-                        }`}
-                      />
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-
-            {/* Bottom decorative line */}
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          </div>
-
-          {/* Right content */}
-          <div className="flex-1 flex flex-col lg:flex-row bg-card overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current.id}
-                initial={{ opacity: 0, x: 16 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -12 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col lg:flex-row flex-1"
+        {/* LEFT — Tab list, full height of the content */}
+        <div className="lg:w-[300px] shrink-0 bg-accent border-r border-white/[0.06] flex flex-col">
+          {services.map((svc, i) => {
+            const isActive = i === active;
+            const num = String(i + 1).padStart(2, "0");
+            return (
+              <button
+                key={svc.id}
+                onClick={() => setActive(i)}
+                className={`group relative flex flex-col px-8 py-7 text-left transition-all duration-200 border-b border-white/[0.06] last:border-b-0 overflow-hidden ${
+                  isActive ? "" : "hover:bg-white/[0.04]"
+                }`}
               >
-                {/* Text content */}
-                <div className="flex-1 p-8 lg:p-10 flex flex-col justify-center">
-                  {/* Icon + headline */}
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                      <current.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="w-px h-8 bg-border" />
-                    <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-primary/70 font-medium">
-                      {services.findIndex((s) => s.id === current.id) + 1} / {services.length}
-                    </span>
-                  </div>
+                {/* Active full bg */}
+                {isActive && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 pointer-events-none" />
+                )}
 
-                  <h3 className="font-display text-xl md:text-2xl font-bold text-foreground leading-snug mb-4">
-                    {current.headline}
-                  </h3>
+                {/* Active right accent */}
+                <div
+                  className={`absolute right-0 top-4 bottom-4 w-[3px] rounded-l-full transition-opacity duration-300 bg-white/40 ${
+                    isActive ? "opacity-100" : "opacity-0"
+                  }`}
+                />
 
-                  <p className="text-sm text-silver leading-relaxed mb-7 max-w-md">
-                    {current.description}
-                  </p>
-
-                  {/* Feature list */}
-                  <ul className="flex flex-col gap-2 mb-8">
-                    {current.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5 text-[13px] text-foreground/80">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link
-                    to={current.href}
-                    className="inline-flex items-center gap-2 text-[13px] font-semibold text-primary hover:gap-3 transition-all group"
+                <div className="relative flex flex-col gap-2">
+                  <span
+                    className={`font-mono text-[10px] tracking-[0.22em] font-bold transition-colors ${
+                      isActive ? "text-white/50" : "text-white/20 group-hover:text-white/35"
+                    }`}
                   >
-                    Explore this service
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                  </Link>
+                    {num}
+                  </span>
+                  <span
+                    className={`font-display text-[13px] font-bold leading-snug tracking-wide transition-colors ${
+                      isActive ? "text-white" : "text-white/50 group-hover:text-white/80"
+                    }`}
+                  >
+                    {svc.label}
+                  </span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="tab-underline"
+                      className="h-px w-8 bg-white/35"
+                    />
+                  )}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* RIGHT — Content + image, full width */}
+        <div className="flex-1 bg-background overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col lg:flex-row h-full"
+            >
+              {/* Text content */}
+              <div className="flex-1 px-10 py-12 lg:py-16 flex flex-col justify-center max-w-xl">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                    <current.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="w-px h-7 bg-border" />
+                  <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-primary/60 font-medium">
+                    Service {services.findIndex((s) => s.id === current.id) + 1} of {services.length}
+                  </span>
                 </div>
 
-                {/* Image */}
-                <div className="lg:w-[380px] shrink-0 relative overflow-hidden min-h-[260px] lg:min-h-0">
-                  <img
-                    src={current.image}
-                    alt={current.label}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  {/* Gradient overlay left edge for seamless blend */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-card via-card/10 to-transparent lg:block hidden" />
-                  {/* Bottom overlay on mobile */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent lg:hidden" />
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground leading-snug mb-5">
+                  {current.headline}
+                </h3>
+
+                <p className="text-sm text-silver leading-relaxed mb-8">
+                  {current.description}
+                </p>
+
+                <ul className="flex flex-col gap-3 mb-10">
+                  {current.features.map((f) => (
+                    <li key={f} className="flex items-center gap-3 text-[13px] text-foreground/80">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  to={current.href}
+                  className="inline-flex items-center gap-2 text-[13px] font-semibold text-primary hover:gap-3 transition-all group w-fit"
+                >
+                  Explore this service
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+
+              {/* Image — flush right, fills full height */}
+              <div className="lg:w-[420px] shrink-0 relative min-h-[280px] lg:min-h-0">
+                <img
+                  src={current.image}
+                  alt={current.label}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-transparent hidden lg:block" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent lg:hidden" />
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
+
+      {/* Bottom separator */}
+      <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
     </section>
   );
 };
