@@ -159,14 +159,14 @@ const closingPoints = [
 const Label = ({ text }: { text: string }) => (
   <div className="flex items-center gap-3 mb-4">
     <div className="w-8 h-0.5 bg-accent-orange-2" />
-    <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-accent-orange-2">{text}</span>
+    <span className="section-label text-accent-orange-2">{text}</span>
     <div className="w-8 h-0.5 bg-accent-orange-2" />
   </div>
 );
 const LabelLight = ({ text }: { text: string }) => (
   <div className="flex items-center gap-3 mb-4">
     <div className="w-8 h-0.5 bg-primary" />
-    <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">{text}</span>
+    <span className="section-label text-primary">{text}</span>
     <div className="w-8 h-0.5 bg-primary" />
   </div>
 );
@@ -849,7 +849,7 @@ const MouldDesign = () => {
           <motion.div {...fadeUp}>
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-accent-orange-2">Plastic Mould Design</span>
+              <span className="section-label text-accent-orange-2">Plastic Mould Design</span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">

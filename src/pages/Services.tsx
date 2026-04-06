@@ -148,7 +148,7 @@ const Services = () => {
           <motion.div {...fadeUp}>
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-accent-orange-2">
+              <span className="section-label text-accent-orange-2">
                 Services & Technology
               </span>
               <div className="w-8 h-0.5 bg-primary" />
@@ -174,7 +174,7 @@ const Services = () => {
       <section className="relative z-[1] py-16 px-4 md:px-8">
         <motion.div {...fadeUp} className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
-            <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-accent-orange-2">
+            <span className="section-label text-accent-orange-2">
               Our E-2-E Solution Ecosystem
             </span>
           </div>
@@ -194,7 +194,7 @@ const Services = () => {
           <motion.div {...fadeUp} className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
+              <span className="section-label text-primary">
                 The Heart of Our Engineering
               </span>
               <div className="w-8 h-0.5 bg-primary" />
@@ -252,7 +252,7 @@ const Services = () => {
           <motion.div {...fadeUp} className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-accent-orange-2">
+              <span className="section-label text-accent-orange-2">
                 Our USP
               </span>
               <div className="w-8 h-0.5 bg-primary" />
@@ -361,7 +361,7 @@ const Services = () => {
           <motion.div {...fadeUp} className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
+              <span className="section-label text-primary">
                 Production Support
               </span>
               <div className="w-8 h-0.5 bg-primary" />
@@ -405,7 +405,7 @@ const Services = () => {
           <motion.div {...fadeUp} className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-accent-orange-2">
+              <span className="section-label text-accent-orange-2">
                 Our Promise
               </span>
               <div className="w-8 h-0.5 bg-primary" />

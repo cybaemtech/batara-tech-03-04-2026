@@ -34,7 +34,7 @@ const EcosystemSection = () => {
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-8 h-0.5 bg-primary" />
-            <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-accent-orange-2">
+            <span className="section-label text-accent-orange-2">
               Our Process
             </span>
             <div className="w-8 h-0.5 bg-primary" />

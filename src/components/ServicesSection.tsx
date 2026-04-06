@@ -68,7 +68,7 @@ const ServicesSection = () => {
         >
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-0.5 bg-primary" />
-            <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
+            <span className="section-label text-primary">
               Services &amp; Technology
             </span>
           </div>

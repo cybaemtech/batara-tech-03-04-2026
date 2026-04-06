@@ -159,7 +159,7 @@ const Careers = () => {
           <motion.div {...fadeUp} className="text-center mb-14">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
+              <span className="section-label text-primary">
                 Why Batara
               </span>
               <div className="w-8 h-0.5 bg-primary" />
@@ -197,7 +197,7 @@ const Careers = () => {
           <motion.div {...fadeUp} className="text-center mb-14">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
+              <span className="section-label text-primary">
                 Our Culture
               </span>
               <div className="w-8 h-0.5 bg-primary" />
@@ -240,7 +240,7 @@ const Careers = () => {
           <motion.div {...fadeUp}>
             <div className="flex items-center justify-center gap-3 mb-5">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
+              <span className="section-label text-primary">
                 Join the Team
               </span>
               <div className="w-8 h-0.5 bg-primary" />

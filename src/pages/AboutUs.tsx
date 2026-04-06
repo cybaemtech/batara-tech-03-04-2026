@@ -80,7 +80,7 @@ const AboutUs = () => {
           <motion.div {...fadeUp}>
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
+              <span className="section-label text-primary">
                 About Us
               </span>
               <div className="w-8 h-0.5 bg-primary" />
@@ -122,7 +122,7 @@ const AboutUs = () => {
           <motion.div {...fadeUp} className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
+              <span className="section-label text-primary">
                 Industry Pedigree
               </span>
               <div className="w-8 h-0.5 bg-primary" />
@@ -160,7 +160,7 @@ const AboutUs = () => {
           <motion.div {...fadeUp} className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
+              <span className="section-label text-primary">
                 The Batara Standard
               </span>
               <div className="w-8 h-0.5 bg-primary" />
@@ -199,7 +199,7 @@ const AboutUs = () => {
           <motion.div {...fadeUp} className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-primary">
+              <span className="section-label text-primary">
                 Executive Leadership
               </span>
               <div className="w-8 h-0.5 bg-primary" />
