@@ -67,14 +67,14 @@ const AnimatedNumber = ({
 
   if (item.numericValue === null) {
     return (
-      <span className="font-display text-3xl font-black tracking-tight text-foreground leading-none">
+      <span className="font-display text-4xl font-black tracking-tight text-foreground leading-none">
         {item.display}
       </span>
     );
   }
 
   return (
-    <span className="font-display text-3xl font-black tracking-tight text-foreground leading-none">
+    <span className="font-display text-4xl font-black tracking-tight text-foreground leading-none">
       {count}{item.suffix}
     </span>
   );
@@ -119,14 +119,14 @@ const TrustBar = () => {
             className="flex-1 min-w-[180px] group relative flex items-center gap-4 px-8 py-5 border-r border-foreground/5 hover:bg-foreground/[0.03] transition-colors duration-300"
           >
             {/* Left accent bar */}
-            <div className="w-[3px] h-8 rounded-full bg-gradient-to-b from-[#E87722] to-[#E87722]/30 shrink-0" />
+            <div className="w-[3px] h-8 rounded-full bg-gradient-to-b from-primary to-primary/30 shrink-0" />
 
             <div>
               <AnimatedNumber item={item} animate={isInView} index={index} />
               <div className="font-display text-[11px] font-semibold text-foreground/80 tracking-wide mt-[3px]">
                 {item.label}
               </div>
-              <div className="font-mono text-[9px] tracking-[0.14em] uppercase text-silver/60 mt-0.5">
+              <div className="font-mono text-[9px] tracking-[0.14em] uppercase text-primary/80 mt-0.5">
                 {item.sublabel}
               </div>
             </div>
