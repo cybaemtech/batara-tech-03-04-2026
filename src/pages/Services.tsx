@@ -247,29 +247,20 @@ const Services = () => {
       </section>
 
       {/* E-2-E Ecosystem Detailed */}
-      <section className="relative z-[1] py-16 md:py-24 px-4 sm:px-8 md:px-16 bg-[#060c1a] overflow-hidden">
-        {/* Subtle grid overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(hsl(214 72% 55% / 0.04) 1px, transparent 1px), linear-gradient(90deg, hsl(214 72% 55% / 0.04) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
+      <section className="relative z-[1] py-16 md:py-24 px-4 sm:px-8 md:px-16 bg-background overflow-hidden">
         <div className="max-w-6xl mx-auto relative">
           <motion.div {...fadeUp} className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-8 h-0.5 bg-[hsl(214_72%_45%)]" />
+              <div className="w-8 h-0.5 bg-primary" />
               <span className="section-label text-accent-orange-2">
                 Our USP
               </span>
-              <div className="w-8 h-0.5 bg-[hsl(214_72%_45%)]" />
+              <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="section-title text-white mb-4">
+            <h2 className="section-title text-foreground mb-4">
               THE E-2-E SOLUTION ECOSYSTEM
             </h2>
-            <p className="text-white/50 max-w-xl mx-auto text-[15px] leading-relaxed">
+            <p className="text-silver max-w-xl mx-auto text-[15px] leading-relaxed">
               We do not just hand over a CAD file and walk away. We provide a complete End-to-End engineering ecosystem — from first concept to final production.
             </p>
           </motion.div>
@@ -285,14 +276,30 @@ const Services = () => {
               transition={{ duration: 0.9 }}
               className="flex-shrink-0 relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] lg:w-[440px] lg:h-[440px]"
             >
-              {/* SVG — rings + dashed spoke lines */}
+              {/* SVG — rings + dashed spoke lines with glow filter */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 440 440" fill="none">
+                <defs>
+                  <filter id="ring-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                  <filter id="spoke-glow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="2" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
                 {/* Outer ring */}
-                <circle cx="220" cy="220" r="195" stroke="hsl(214 72% 55% / 0.35)" strokeWidth="1.5" />
+                <circle cx="220" cy="220" r="195" stroke="hsl(214 72% 38% / 0.45)" strokeWidth="1.5" filter="url(#ring-glow)" />
                 {/* Mid ring */}
-                <circle cx="220" cy="220" r="110" stroke="hsl(214 72% 55% / 0.2)" strokeWidth="1" />
+                <circle cx="220" cy="220" r="110" stroke="hsl(214 72% 38% / 0.28)" strokeWidth="1" />
                 {/* Inner ring */}
-                <circle cx="220" cy="220" r="46" stroke="hsl(214 72% 65% / 0.45)" strokeWidth="1.5" />
+                <circle cx="220" cy="220" r="46" stroke="hsl(214 72% 42% / 0.55)" strokeWidth="1.5" filter="url(#ring-glow)" />
                 {/* Dashed spokes — center to each node */}
                 {[
                   { x2: 220, y2: 25 },
@@ -305,10 +312,11 @@ const Services = () => {
                     key={i}
                     x1="220" y1="220"
                     x2={pt.x2} y2={pt.y2}
-                    stroke={i === activeStep ? "hsl(214 72% 65% / 0.7)" : "hsl(214 72% 55% / 0.2)"}
+                    stroke={i === activeStep ? "hsl(214 72% 42% / 0.75)" : "hsl(214 72% 38% / 0.22)"}
                     strokeWidth="1.5"
                     strokeDasharray="5 5"
-                    animate={{ opacity: i === activeStep ? 1 : 0.6 }}
+                    filter={i === activeStep ? "url(#spoke-glow)" : undefined}
+                    animate={{ opacity: i === activeStep ? 1 : 0.7 }}
                     transition={{ duration: 0.4 }}
                   />
                 ))}
@@ -316,10 +324,10 @@ const Services = () => {
 
               {/* Slow-spinning outer decoration ring */}
               <div
-                className="absolute inset-0 rounded-full border border-[hsl(214_72%_50%/0.25)]"
+                className="absolute inset-0 rounded-full border border-[hsl(214_72%_42%/0.3)]"
                 style={{ animation: "spin-ring 40s linear infinite" }}
               >
-                <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[hsl(214_72%_65%)] shadow-[0_0_12px_hsl(214_72%_65%),0_0_24px_hsl(214_72%_50%/0.5)]" />
+                <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[hsl(214_72%_45%)] shadow-[0_0_10px_hsl(214_72%_42%/0.8),0_0_20px_hsl(214_72%_42%/0.4)]" />
               </div>
 
               {/* Center hub */}
@@ -359,25 +367,26 @@ const Services = () => {
                   >
                     <motion.div
                       animate={{
-                        borderColor: isActive ? "hsl(214 72% 60%)" : "hsl(214 72% 40% / 0.3)",
+                        borderColor: isActive ? "hsl(214 72% 42%)" : "hsl(214 72% 42% / 0.25)",
                         boxShadow: isActive
-                          ? "0 0 24px hsl(214 72% 40% / 0.5), 0 0 48px hsl(214 72% 37% / 0.2)"
-                          : "none",
-                        backgroundColor: isActive ? "hsl(214 72% 22% / 0.95)" : "hsl(214 72% 8% / 0.9)",
+                          ? "0 0 16px hsl(214 72% 42% / 0.45), 0 0 32px hsl(214 72% 38% / 0.2), inset 0 0 8px hsl(214 72% 55% / 0.1)"
+                          : "0 1px 4px hsl(214 72% 38% / 0.1)",
+                        backgroundColor: isActive ? "hsl(214 72% 20%)" : "hsl(214 72% 96%)",
                       }}
                       transition={{ duration: 0.4 }}
-                      className="w-11 h-11 sm:w-13 sm:h-13 rounded-xl border-2 flex items-center justify-center backdrop-blur-md"
+                      className="rounded-xl border-2 flex items-center justify-center backdrop-blur-md"
                       style={{ width: "2.8rem", height: "2.8rem" }}
                     >
                       <step.icon
                         className="w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-300"
-                        style={{ color: isActive ? "hsl(214 72% 80%)" : "hsl(214 72% 45%)" }}
+                        style={{ color: isActive ? "hsl(214 72% 85%)" : "hsl(214 72% 38%)" }}
                       />
                     </motion.div>
                     <motion.span
-                      animate={{ opacity: isActive ? 1 : 0.45 }}
+                      animate={{ opacity: isActive ? 1 : 0.5 }}
                       transition={{ duration: 0.4 }}
-                      className="font-mono text-[7px] sm:text-[8px] font-semibold tracking-[0.12em] uppercase text-center whitespace-nowrap text-[hsl(214_72%_70%)] leading-tight max-w-[72px]"
+                      className="font-mono text-[7px] sm:text-[8px] font-semibold tracking-[0.12em] uppercase text-center whitespace-nowrap leading-tight max-w-[72px]"
+                      style={{ color: isActive ? "hsl(214 72% 38%)" : "hsl(214 72% 30% / 0.7)" }}
                     >
                       {step.label}
                     </motion.span>
@@ -395,7 +404,7 @@ const Services = () => {
             {/* RIGHT — Description Panel */}
             <div className="flex-1 min-w-0">
               {/* Step counter */}
-              <div className="font-mono text-[11px] tracking-[0.2em] uppercase text-[hsl(214_72%_65%)] mb-4">
+              <div className="font-mono text-[11px] tracking-[0.2em] uppercase text-primary mb-4">
                 Step {String(activeStep + 1).padStart(2, "0")} &nbsp;/&nbsp; {String(ecosystemSteps.length).padStart(2, "0")}
               </div>
 
@@ -408,26 +417,26 @@ const Services = () => {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.35 }}
                 >
-                  {/* Active step icon */}
+                  {/* Active step icon + title */}
                   <div className="flex items-center gap-4 mb-5">
                     <div
                       className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0"
                       style={{
-                        background: "radial-gradient(circle, hsl(214 72% 30% / 0.6), hsl(214 72% 12% / 0.8))",
-                        border: "1.5px solid hsl(214 72% 55% / 0.5)",
-                        boxShadow: "0 0 20px hsl(214 72% 37% / 0.3), inset 0 0 12px hsl(214 72% 40% / 0.1)",
+                        background: "hsl(214 72% 95%)",
+                        border: "1.5px solid hsl(214 72% 42% / 0.35)",
+                        boxShadow: "0 0 16px hsl(214 72% 42% / 0.2), inset 0 0 10px hsl(214 72% 55% / 0.08)",
                       }}
                     >
                       {(() => {
                         const Icon = ecosystemSteps[activeStep].icon;
-                        return <Icon className="w-6 h-6 text-[hsl(214_72%_75%)]" />;
+                        return <Icon className="w-6 h-6" style={{ color: "hsl(214 72% 35%)" }} />;
                       })()}
                     </div>
-                    <h3 className="font-display font-bold text-2xl md:text-3xl text-white leading-tight tracking-tight">
+                    <h3 className="font-display font-bold text-2xl md:text-3xl text-foreground leading-tight tracking-tight">
                       {ecosystemSteps[activeStep].label.toUpperCase()}
                     </h3>
                   </div>
-                  <p className="text-white/55 text-[15px] leading-relaxed mb-8 max-w-md border-l-2 border-[hsl(214_72%_50%/0.4)] pl-4">
+                  <p className="text-silver text-[15px] leading-relaxed mb-8 max-w-md border-l-2 border-primary/30 pl-4">
                     {ecosystemSteps[activeStep].desc}
                   </p>
                 </motion.div>
@@ -441,8 +450,8 @@ const Services = () => {
                     onClick={() => setActiveStep(i)}
                     className={`flex items-center gap-2 px-3.5 py-2 rounded-lg border text-[13px] font-medium transition-all duration-300 ${
                       i === activeStep
-                        ? "bg-[hsl(214_72%_25%/0.4)] border-[hsl(214_72%_55%/0.6)] text-[hsl(214_72%_80%)] shadow-[0_0_16px_hsl(214_72%_37%/0.3)]"
-                        : "border-white/10 text-white/40 hover:border-white/25 hover:text-white/70"
+                        ? "bg-primary/10 border-primary/50 text-primary shadow-[0_0_14px_hsl(214_72%_42%/0.2)]"
+                        : "border-border text-silver hover:border-primary/30 hover:text-foreground"
                     }`}
                   >
                     <span className="font-mono text-[10px] opacity-70">{String(i + 1).padStart(2, "0")}</span>
@@ -453,10 +462,10 @@ const Services = () => {
               </div>
 
               {/* Auto-progress bar */}
-              <div className="h-px bg-white/10 overflow-hidden rounded-full">
+              <div className="h-px bg-border overflow-hidden rounded-full">
                 <motion.div
                   key={activeStep}
-                  className="h-full bg-[hsl(214_72%_55%)]"
+                  className="h-full bg-primary"
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: STEP_DURATION / 1000, ease: "linear" }}
