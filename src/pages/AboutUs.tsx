@@ -1,15 +1,20 @@
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import { Shield, Award, Eye, Users, Mail, ArrowRight } from "lucide-react";
+import {
+  Shield, Award, Eye, Users, Mail, ArrowRight,
+  Car, Plane, Activity, Zap, Package, Truck,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const verticals = [
-  { name: "Automotive Engineering", years: "20 Years", highlight: true },
-  { name: "Aerospace & Space", years: "10 Years", highlight: true },
-  { name: "Medical & Electromechanical", years: "10 Years", highlight: true },
-  { name: "Consumer Products", years: "", highlight: false },
-  { name: "Heavy Machinery", years: "", highlight: false },
+  { name: "Automotive Engineering",  years: 20, suffix: "+", icon: Car,      desc: "OEM, Tier-1 & Tier-2 product design to production" },
+  { name: "Aerospace & Space",        years: 10, suffix: "+", icon: Plane,    desc: "Space-grade simulation & structural precision design" },
+  { name: "Medical & Healthcare",     years: 10, suffix: "+", icon: Activity, desc: "Compliance-first medical device engineering" },
+  { name: "Electro Mechanical",       years: 8,  suffix: "+", icon: Zap,      desc: "PCB integration & electromechanical assemblies" },
+  { name: "Consumer Products",        years: null, suffix: "", icon: Package,  desc: "Mass-market innovation & design execution" },
+  { name: "Heavy Machinery",          years: null, suffix: "", icon: Truck,    desc: "Structural, hydraulic & mechanical design" },
 ];
 
 const standards = [
@@ -57,6 +62,28 @@ const fadeUp = {
   viewport: { once: true },
 };
 
+function CountUp({ target, duration = 1.8, suffix = "" }: { target: number; duration?: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    let startTime: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+      else setCount(target);
+    };
+    requestAnimationFrame(step);
+  }, [isInView, target, duration]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
+
 const AboutUs = () => {
   const navigate = useNavigate();
 
@@ -64,9 +91,7 @@ const AboutUs = () => {
     e.preventDefault();
     navigate("/");
     setTimeout(() => {
-      document
-        .getElementById("contact")
-        ?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
 
@@ -80,32 +105,21 @@ const AboutUs = () => {
           <motion.div {...fadeUp}>
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="section-label text-primary">
-                About Us
-              </span>
+              <span className="section-label text-primary">About Us</span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
             <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
               ENGINEERING REALITY, TOGETHER.
             </h1>
             <p className="text-muted-foreground text-[15px] leading-relaxed max-w-2xl mx-auto mb-6">
-              At Batara Techno Solutions, we do not just conceptualize; we
-              manufacture. Built specifically for the demands of OEMs, Tier-1,
-              and Tier-2 organizations, we bridge the critical gap between
-              theoretical design and shop-floor reality.
+              At Batara Techno Solutions, we do not just conceptualize; we manufacture. Built specifically for the demands of OEMs, Tier-1, and Tier-2 organizations, we bridge the critical gap between theoretical design and shop-floor reality.
             </p>
             <p className="text-muted-foreground text-[15px] leading-relaxed max-w-2xl mx-auto mb-8">
-              Our foundation is built on a single, uncompromising promise: By
-              partnering with premier electronics and mechanical organizations,
-              we operate as a complete{" "}
-              <Link
-                to="/#services"
-                className="text-primary underline underline-offset-4 hover:text-accent-orange-2 transition-colors"
-              >
+              Our foundation is built on a single, uncompromising promise: By partnering with premier electronics and mechanical organizations, we operate as a complete{" "}
+              <Link to="/#services" className="text-primary underline underline-offset-4 hover:text-accent-orange-2 transition-colors">
                 End-to-End (E-2-E) Solution Ecosystem
               </Link>
-              —taking your problem statement from the ideation phase through to
-              final production support.
+              —taking your problem statement from the ideation phase through to final production support.
             </p>
             <div className="inline-block border border-primary/40 bg-primary/5 rounded-lg px-6 py-3">
               <span className="font-display font-bold text-primary text-lg tracking-wide">
@@ -116,41 +130,125 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Industry Pedigree */}
-      <section className="relative z-[1] py-14 md:py-20 px-4 sm:px-8 md:px-16 bg-accent text-primary-foreground">
-        <div className="max-w-5xl mx-auto">
-          <motion.div {...fadeUp} className="text-center mb-12">
+      {/* ── Industry Pedigree ── */}
+      <section className="relative z-[1] py-16 md:py-24 px-4 sm:px-8 md:px-16 bg-accent text-primary-foreground overflow-hidden">
+        {/* Subtle grid texture */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(hsl(214 72% 60% / 0.05) 1px, transparent 1px), linear-gradient(90deg, hsl(214 72% 60% / 0.05) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
+        />
+
+        {/* Glowing radial behind header */}
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[260px] pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse at center, hsl(214 72% 42% / 0.12) 0%, transparent 70%)",
+          }}
+        />
+
+        <div className="max-w-6xl mx-auto relative">
+
+          {/* Section header */}
+          <motion.div {...fadeUp} className="text-center mb-14">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="section-label text-primary">
-                Industry Pedigree
-              </span>
+              <span className="section-label text-primary">Industry Pedigree</span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="section-title text-primary-foreground">
+            <h2 className="section-title text-primary-foreground mb-4">
               DECADES OF BATTLE-TESTED EXPERIENCE
             </h2>
+            <p className="text-primary-foreground/50 text-[15px] max-w-lg mx-auto leading-relaxed">
+              Built across the most demanding engineering sectors — our pedigree is measured in delivered results, not years alone.
+            </p>
           </motion.div>
 
+          {/* Cards grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {verticals.map((v, i) => (
               <motion.div
                 key={v.name}
-                {...fadeUp}
-                transition={{ delay: i * 0.08 }}
-                className="bg-accent/60 border border-primary-foreground/10 rounded-lg p-6 text-center hover:border-primary/30 transition-colors"
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.09 }}
+                className="group relative rounded-xl border border-primary-foreground/10 bg-primary-foreground/[0.04] hover:bg-primary-foreground/[0.08] hover:border-primary/40 transition-all duration-300 p-6 overflow-hidden"
               >
-                <div className="font-display font-bold text-primary-foreground text-lg mb-2">
-                  {v.name}
-                </div>
-                {v.years && (
-                  <div className="font-mono text-xs text-accent-orange-2 tracking-wider font-semibold">
-                    {v.years}
+                {/* Top accent bar */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary/0 via-primary/70 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Icon + number row */}
+                <div className="flex items-start justify-between mb-4">
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{
+                      background: "hsl(214 72% 50% / 0.12)",
+                      border: "1px solid hsl(214 72% 55% / 0.25)",
+                    }}
+                  >
+                    <v.icon className="w-5 h-5 text-primary" />
                   </div>
-                )}
+
+                  {v.years !== null ? (
+                    <div className="text-right">
+                      <div className="font-display font-bold text-3xl text-primary leading-none">
+                        <CountUp target={v.years} suffix={v.suffix} />
+                      </div>
+                      <div className="font-mono text-[10px] text-primary-foreground/40 tracking-[0.18em] uppercase mt-0.5">
+                        Years
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-right">
+                      <div className="font-mono text-[10px] text-accent-orange-2 tracking-[0.18em] uppercase border border-accent-orange-2/30 rounded px-2 py-1">
+                        Domain
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Name + desc */}
+                <div>
+                  <h3 className="font-display font-bold text-primary-foreground text-[15px] mb-1.5 leading-snug">
+                    {v.name}
+                  </h3>
+                  <p className="text-primary-foreground/45 text-[13px] leading-relaxed">
+                    {v.desc}
+                  </p>
+                </div>
+
+                {/* Bottom separator line */}
+                <div className="absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
               </motion.div>
             ))}
           </div>
+
+          {/* Summary stat bar */}
+          <motion.div
+            {...fadeUp}
+            transition={{ delay: 0.5 }}
+            className="mt-10 grid grid-cols-3 gap-px bg-primary-foreground/10 rounded-xl overflow-hidden"
+          >
+            {[
+              { value: 20, suffix: "+", label: "Years in Automotive" },
+              { value: 6,  suffix: "",  label: "Engineering Sectors" },
+              { value: 10, suffix: "+", label: "Years in Aerospace" },
+            ].map((stat) => (
+              <div key={stat.label} className="bg-accent flex flex-col items-center justify-center py-5 px-4 text-center">
+                <div className="font-display font-bold text-2xl text-primary leading-none mb-1">
+                  <CountUp target={stat.value} suffix={stat.suffix} duration={2} />
+                </div>
+                <div className="font-mono text-[11px] text-primary-foreground/40 tracking-[0.14em] uppercase">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
         </div>
       </section>
 
@@ -160,14 +258,10 @@ const AboutUs = () => {
           <motion.div {...fadeUp} className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="section-label text-primary">
-                The Batara Standard
-              </span>
+              <span className="section-label text-primary">The Batara Standard</span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="section-title text-foreground">
-              PROTECTING YOUR INVESTMENT
-            </h2>
+            <h2 className="section-title text-foreground">PROTECTING YOUR INVESTMENT</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -181,12 +275,8 @@ const AboutUs = () => {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
                   <s.icon className="w-5 h-5 text-accent-orange-2" />
                 </div>
-                <h3 className="font-display font-bold text-foreground text-lg mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {s.desc}
-                </p>
+                <h3 className="font-display font-bold text-foreground text-lg mb-2">{s.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -199,14 +289,10 @@ const AboutUs = () => {
           <motion.div {...fadeUp} className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-primary" />
-              <span className="section-label text-primary">
-                Executive Leadership
-              </span>
+              <span className="section-label text-primary">Executive Leadership</span>
               <div className="w-8 h-0.5 bg-primary" />
             </div>
-            <h2 className="section-title text-primary-foreground">
-              DRIVEN BY PRECISION & TRANSPARENCY
-            </h2>
+            <h2 className="section-title text-primary-foreground">DRIVEN BY PRECISION & TRANSPARENCY</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -219,36 +305,22 @@ const AboutUs = () => {
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div className="h-16 w-16 rounded-full border-2 border-primary/40 shrink-0 shadow-[0_0_20px_hsl(var(--primary)/0.2)] overflow-hidden">
-                    <img
-                      src={exec.image}
-                      alt={exec.name}
-                      className="w-full h-full object-cover object-top"
-                    />
+                    <img src={exec.image} alt={exec.name} className="w-full h-full object-cover object-top" />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-primary-foreground text-lg">
-                      {exec.name}
-                    </h3>
-                    <p className="font-mono text-[11px] text-primary tracking-wider uppercase">
-                      Executive Head
-                    </p>
+                    <h3 className="font-display font-bold text-primary-foreground text-lg">{exec.name}</h3>
+                    <p className="font-mono text-[11px] text-primary tracking-wider uppercase">Executive Head</p>
                   </div>
                 </div>
-                <a
-                  href={`mailto:${exec.email}`}
-                  className="flex items-center gap-2 text-accent-orange-2 text-xs font-mono mb-4 hover:underline"
-                >
+                <a href={`mailto:${exec.email}`} className="flex items-center gap-2 text-accent-orange-2 text-xs font-mono mb-4 hover:underline">
                   <Mail className="w-3.5 h-3.5" />
                   {exec.email}
                 </a>
-                <p className="text-primary-foreground/70 text-sm leading-relaxed">
-                  {exec.desc}
-                </p>
+                <p className="text-primary-foreground/70 text-sm leading-relaxed">{exec.desc}</p>
               </motion.div>
             ))}
           </div>
 
-          {/* Strategic CTA */}
           <motion.div {...fadeUp} className="text-center mt-16">
             <button
               onClick={handleContactClick}
