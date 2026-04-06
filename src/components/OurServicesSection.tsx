@@ -108,13 +108,13 @@ const OurServicesSection = () => {
         >
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-0.5 bg-primary" />
-            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-primary font-semibold">
+            <span className="section-label text-primary">
               What We Do
             </span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground tracking-tight uppercase">
-              Our Services
+            <h2 className="section-title text-foreground">
+              OUR SERVICES
             </h2>
             <Link
               to="/services"
