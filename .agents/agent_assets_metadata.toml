@@ -84,3 +84,33 @@ id = "KdULdtn9AjLhi2z0yBWjo"
 uri = "file://public/about-hero-bg.png"
 type = "image"
 title = "engineering facility hero background"
+
+[[generated]]
+id = "gIWlLTBrJeTDsy3GMqHrt"
+uri = "file://public/svc-engineering-design.png"
+type = "image"
+title = "engineering design analysis"
+
+[[generated]]
+id = "2ENfLg7lT2GOY0JwBOL3l"
+uri = "file://public/svc-manufacturing-engineering.png"
+type = "image"
+title = "manufacturing engineering mould"
+
+[[generated]]
+id = "JFUzxpdnxXnKKK7IOguaq"
+uri = "file://public/svc-integrated-project.png"
+type = "image"
+title = "integrated project delivery"
+
+[[generated]]
+id = "x97up_dOv_h-wxyVxI1B2"
+uri = "file://public/svc-technical-animation.png"
+type = "image"
+title = "technical animation publication"
+
+[[generated]]
+id = "drmlPGHmp-9xJQgy-QW85"
+uri = "file://public/svc-electronics-pcb.png"
+type = "image"
+title = "electronics PCB manufacturing"

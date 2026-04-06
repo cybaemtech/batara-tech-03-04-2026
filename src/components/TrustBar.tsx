@@ -67,7 +67,7 @@ const AnimatedNumber = ({
 
   if (item.numericValue === null) {
     return (
-      <span className="font-display text-4xl font-black tracking-tight text-foreground leading-none">
+      <span className="font-display text-3xl font-black tracking-tight text-foreground leading-none">
         {item.display}
       </span>
     );
@@ -75,7 +75,8 @@ const AnimatedNumber = ({
 
   return (
     <span className="font-display text-4xl font-black tracking-tight text-foreground leading-none">
-      {count}{item.suffix}
+      {count}
+      {item.suffix}
     </span>
   );
 };
