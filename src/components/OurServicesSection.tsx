@@ -131,45 +131,69 @@ const OurServicesSection = () => {
         <div className="flex flex-col lg:flex-row gap-0 border border-border rounded-2xl overflow-hidden shadow-sm">
 
           {/* Left tabs */}
-          <div className="lg:w-[280px] shrink-0 bg-accent flex flex-col">
+          <div className="lg:w-[300px] shrink-0 bg-accent flex flex-col relative">
+            {/* Top decorative line */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
             {services.map((svc, i) => {
-              const Icon = svc.icon;
               const isActive = i === active;
+              const num = String(i + 1).padStart(2, "0");
               return (
                 <button
                   key={svc.id}
                   onClick={() => setActive(i)}
-                  className={`group relative flex items-center gap-3 px-6 py-5 text-left transition-all duration-200 border-b border-white/[0.06] last:border-b-0 ${
-                    isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "text-white/60 hover:bg-white/[0.05] hover:text-white"
+                  className={`group relative flex flex-col px-7 py-6 text-left transition-all duration-250 border-b border-white/[0.07] last:border-b-0 overflow-hidden ${
+                    isActive ? "bg-primary/90" : "hover:bg-white/[0.04]"
                   }`}
                 >
-                  {/* Active left bar */}
+                  {/* Active right accent bar */}
+                  <div
+                    className={`absolute right-0 top-0 bottom-0 w-[3px] rounded-l-full transition-all duration-300 ${
+                      isActive ? "bg-white/50 opacity-100" : "opacity-0"
+                    }`}
+                  />
+
+                  {/* Active background shimmer */}
                   {isActive && (
-                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-white/60 rounded-r-full" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/80 pointer-events-none" />
                   )}
 
-                  <span
-                    className={`shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                      isActive
-                        ? "bg-white/20"
-                        : "bg-white/[0.07] group-hover:bg-white/[0.12]"
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </span>
+                  <div className="relative flex items-start gap-4">
+                    {/* Number */}
+                    <span
+                      className={`font-mono text-[11px] font-bold tracking-[0.2em] mt-0.5 shrink-0 transition-colors duration-200 ${
+                        isActive ? "text-white/60" : "text-white/25 group-hover:text-white/40"
+                      }`}
+                    >
+                      {num}
+                    </span>
 
-                  <span
-                    className={`text-[13px] font-semibold leading-snug tracking-wide ${
-                      isActive ? "text-white" : ""
-                    }`}
-                  >
-                    {svc.label}
-                  </span>
+                    <div className="flex flex-col gap-1">
+                      {/* Label */}
+                      <span
+                        className={`font-display text-[13px] font-bold leading-snug tracking-wide transition-colors duration-200 ${
+                          isActive
+                            ? "text-white"
+                            : "text-white/55 group-hover:text-white/80"
+                        }`}
+                      >
+                        {svc.label}
+                      </span>
+
+                      {/* Underline indicator */}
+                      <div
+                        className={`h-px bg-white/30 transition-all duration-300 ${
+                          isActive ? "w-8 opacity-100" : "w-0 opacity-0"
+                        }`}
+                      />
+                    </div>
+                  </div>
                 </button>
               );
             })}
+
+            {/* Bottom decorative line */}
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </div>
 
           {/* Right content */}
