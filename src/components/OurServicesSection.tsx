@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Compass, Factory, GitBranch, Film, CircuitBoard } from "lucide-react";
+import { ArrowRight, Compass, Factory, GitBranch, Film, CircuitBoard, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const services = [
@@ -88,16 +88,17 @@ const services = [
 
 const OurServicesSection = () => {
   const [active, setActive] = useState(0);
+  const [mobileOpen, setMobileOpen] = useState<number | null>(0);
   const current = services[active];
 
   return (
-    <section id="our-services" className="relative z-[1] bg-background pb-24 md:pb-32">
+    <section id="our-services" className="relative z-[1] bg-background pb-16 md:pb-24">
 
       {/* Top separator */}
       <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
       {/* Section header */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-16 pt-16 md:pt-24 pb-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-16 pt-12 md:pt-16 pb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -120,11 +121,11 @@ const OurServicesSection = () => {
         </motion.div>
       </div>
 
-      {/* Full-width tabs + content layout */}
-      <div className="flex flex-col lg:flex-row border-t border-border">
+      {/* ── DESKTOP layout (lg+): side-by-side tabs ── */}
+      <div className="hidden lg:flex border-t border-border">
 
-        {/* LEFT — Tab list, full height of the content */}
-        <div className="lg:w-[300px] shrink-0 bg-accent border-r border-white/[0.06] flex flex-col">
+        {/* LEFT — Tab list */}
+        <div className="w-[280px] shrink-0 bg-accent border-r border-white/[0.06] flex flex-col">
           {services.map((svc, i) => {
             const isActive = i === active;
             const num = String(i + 1).padStart(2, "0");
@@ -132,23 +133,19 @@ const OurServicesSection = () => {
               <button
                 key={svc.id}
                 onClick={() => setActive(i)}
-                className={`group relative flex flex-col px-8 py-7 text-left transition-all duration-200 border-b border-white/[0.06] last:border-b-0 overflow-hidden ${
+                className={`group relative flex flex-col px-6 py-4 text-left transition-all duration-200 border-b border-white/[0.06] last:border-b-0 overflow-hidden ${
                   isActive ? "" : "hover:bg-white/[0.04]"
                 }`}
               >
-                {/* Active full bg */}
                 {isActive && (
                   <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 pointer-events-none" />
                 )}
-
-                {/* Active right accent */}
                 <div
-                  className={`absolute right-0 top-4 bottom-4 w-[3px] rounded-l-full transition-opacity duration-300 bg-white/40 ${
+                  className={`absolute right-0 top-3 bottom-3 w-[3px] rounded-l-full transition-opacity duration-300 bg-white/40 ${
                     isActive ? "opacity-100" : "opacity-0"
                   }`}
                 />
-
-                <div className="relative flex flex-col gap-2">
+                <div className="relative flex flex-col gap-1.5">
                   <span
                     className={`font-mono text-[10px] tracking-[0.22em] font-bold transition-colors ${
                       isActive ? "text-white/50" : "text-white/20 group-hover:text-white/35"
@@ -157,7 +154,7 @@ const OurServicesSection = () => {
                     {num}
                   </span>
                   <span
-                    className={`font-display text-[13px] font-bold leading-snug tracking-wide transition-colors ${
+                    className={`font-display text-[12px] font-bold leading-snug tracking-wide transition-colors ${
                       isActive ? "text-white" : "text-white/50 group-hover:text-white/80"
                     }`}
                   >
@@ -175,7 +172,7 @@ const OurServicesSection = () => {
           })}
         </div>
 
-        {/* RIGHT — Content + image, full width */}
+        {/* RIGHT — Content + image */}
         <div className="flex-1 bg-background overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
@@ -184,29 +181,29 @@ const OurServicesSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col lg:flex-row h-full"
+              className="flex flex-row h-full"
             >
               {/* Text content */}
-              <div className="flex-1 px-10 py-12 lg:py-16 flex flex-col justify-center max-w-xl">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                    <current.icon className="w-5 h-5 text-primary" />
+              <div className="flex-1 px-10 py-10 flex flex-col justify-center max-w-xl">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                    <current.icon className="w-4 h-4 text-primary" />
                   </div>
-                  <div className="w-px h-7 bg-border" />
+                  <div className="w-px h-6 bg-border" />
                   <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-primary/60 font-medium">
                     Service {services.findIndex((s) => s.id === current.id) + 1} of {services.length}
                   </span>
                 </div>
 
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground leading-snug mb-5">
+                <h3 className="font-display text-xl md:text-2xl font-bold text-foreground leading-snug mb-4">
                   {current.headline}
                 </h3>
 
-                <p className="text-sm text-silver leading-relaxed mb-8">
+                <p className="text-sm text-silver leading-relaxed mb-6">
                   {current.description}
                 </p>
 
-                <ul className="flex flex-col gap-3 mb-10">
+                <ul className="flex flex-col gap-2.5 mb-8">
                   {current.features.map((f) => (
                     <li key={f} className="flex items-center gap-3 text-[13px] text-foreground/80">
                       <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
@@ -224,23 +221,105 @@ const OurServicesSection = () => {
                 </Link>
               </div>
 
-              {/* Image — flush right, fills full height */}
-              <div className="lg:w-[420px] shrink-0 relative min-h-[280px] lg:min-h-0">
+              {/* Image */}
+              <div className="w-[380px] shrink-0 relative">
                 <img
                   src={current.image}
                   alt={current.label}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-transparent hidden lg:block" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent lg:hidden" />
+                <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-transparent" />
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
 
+      {/* ── MOBILE / TABLET layout (< lg): accordion ── */}
+      <div className="lg:hidden border-t border-border divide-y divide-border">
+        {services.map((svc, i) => {
+          const isOpen = mobileOpen === i;
+          const num = String(i + 1).padStart(2, "0");
+          return (
+            <div key={svc.id} className="bg-background">
+              {/* Accordion header */}
+              <button
+                onClick={() => setMobileOpen(isOpen ? null : i)}
+                className="w-full flex items-center justify-between px-4 sm:px-8 py-4 text-left"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-[10px] tracking-[0.2em] text-primary/50 font-bold">{num}</span>
+                  <div className="w-7 h-7 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                    <svc.icon className="w-3.5 h-3.5 text-primary" />
+                  </div>
+                  <span className="font-display text-[13px] sm:text-sm font-bold text-foreground leading-snug">
+                    {svc.label}
+                  </span>
+                </div>
+                <motion.div
+                  animate={{ rotate: isOpen ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="shrink-0 ml-3"
+                >
+                  <ChevronDown className="w-4 h-4 text-primary/60" />
+                </motion.div>
+              </button>
+
+              {/* Accordion body */}
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    key="body"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden"
+                  >
+                    {/* Image banner */}
+                    <div className="relative h-48 sm:h-56 w-full overflow-hidden">
+                      <img
+                        src={svc.image}
+                        alt={svc.label}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                    </div>
+
+                    {/* Content */}
+                    <div className="px-4 sm:px-8 py-6">
+                      <h3 className="font-display text-lg sm:text-xl font-bold text-foreground leading-snug mb-3">
+                        {svc.headline}
+                      </h3>
+                      <p className="text-sm text-silver leading-relaxed mb-5">
+                        {svc.description}
+                      </p>
+                      <ul className="flex flex-col gap-2.5 mb-6">
+                        {svc.features.map((f) => (
+                          <li key={f} className="flex items-center gap-3 text-[13px] text-foreground/80">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                      <Link
+                        to={svc.href}
+                        className="inline-flex items-center gap-2 text-[13px] font-semibold text-primary hover:gap-3 transition-all group"
+                      >
+                        Explore this service
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
+
       {/* Bottom separator */}
-      <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mt-0" />
 
     </section>
   );
