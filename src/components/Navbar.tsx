@@ -1,26 +1,31 @@
 import { useState } from "react";
-import { Menu, X, ChevronDown, Shield } from "lucide-react";
+import {
+  Menu, X, ChevronDown, Shield,
+  Plane, Car, Cog, Cpu, Zap, Truck,
+  Compass, Factory, GitBranch, Film, CircuitBoard, FolderOpen, Image,
+  ArrowRight,
+} from "lucide-react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 
 const WA_LINK = "https://wa.me/918105111599";
 
 const industriesItems = [
-  "Aerospace",
-  "Automotive",
-  "Industrial Machinery",
-  "Industrial Automation",
-  "Electro Mechanical",
-  "Heavy Machinery",
+  { label: "Aerospace",             icon: Plane },
+  { label: "Automotive",            icon: Car },
+  { label: "Industrial Machinery",  icon: Cog },
+  { label: "Industrial Automation", icon: Cpu },
+  { label: "Electro Mechanical",    icon: Zap },
+  { label: "Heavy Machinery",       icon: Truck },
 ];
 
 const servicesItems = [
-  { label: "Engineering Design & Analysis", href: "/services" },
-  { label: "Manufacturing Engineering Services – BIW, Mould Design, Sheet Metal", href: "/mould-design" },
-  { label: "Integrated Project Delivery", href: "/services" },
-  { label: "Technical Animation & Publication", href: "/services" },
-  { label: "Electronics Manufacturing (PCB & Electromechanical)", href: "/services" },
-  { label: "Project Portfolio", href: "/mould-design" },
-  { label: "Technical Gallery", href: "/technical-gallery" },
+  { label: "Engineering Design & Analysis",                                          href: "/services",        icon: Compass },
+  { label: "Manufacturing Engineering – BIW, Mould & Sheet Metal",                  href: "/mould-design",    icon: Factory },
+  { label: "Integrated Project Delivery",                                            href: "/services",        icon: GitBranch },
+  { label: "Technical Animation & Publication",                                      href: "/services",        icon: Film },
+  { label: "Electronics Manufacturing (PCB & Electromechanical)",                   href: "/services",        icon: CircuitBoard },
+  { label: "Project Portfolio",                                                      href: "/mould-design",    icon: FolderOpen },
+  { label: "Technical Gallery",                                                      href: "/technical-gallery", icon: Image },
 ];
 
 const WhatsAppIcon = () => (
@@ -56,24 +61,33 @@ const Navbar = () => {
       </Link>
 
       <ul className="hidden lg:flex items-center gap-7 list-none">
+
+        {/* Industries dropdown */}
         <li className="relative group">
           <button className="flex items-center gap-1 text-[13px] font-medium tracking-wider uppercase text-silver hover:text-foreground transition-colors py-2">
             Industries
             <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
           </button>
-          <div className="absolute top-full left-0 mt-1 w-80 bg-card border border-border rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[200] p-2 grid grid-cols-2 gap-0.5">
+          <div className="absolute top-full left-0 mt-1 w-72 bg-card border border-border rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[200] p-2">
             {industriesItems.map((item) => (
               <a
-                key={item}
+                key={item.label}
                 href="#"
-                className="block px-3 py-2.5 text-[13px] text-silver hover:text-foreground hover:bg-secondary rounded transition-colors"
+                className="group/item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors hover:bg-secondary"
               >
-                {item}
+                <span className="flex-shrink-0 w-7 h-7 rounded-md bg-primary/8 flex items-center justify-center group-hover/item:bg-primary/15 transition-colors">
+                  <item.icon className="w-3.5 h-3.5 text-primary" />
+                </span>
+                <span className="flex-1 text-[13px] text-silver group-hover/item:text-foreground transition-colors leading-tight">
+                  {item.label}
+                </span>
+                <ArrowRight className="w-3 h-3 text-silver/40 group-hover/item:text-primary group-hover/item:translate-x-0.5 transition-all duration-150 opacity-0 group-hover/item:opacity-100" />
               </a>
             ))}
           </div>
         </li>
 
+        {/* Services dropdown */}
         <li className="relative group">
           {(() => {
             const servicesPaths = ["/services", "/mould-design", "/technical-gallery"];
@@ -85,14 +99,19 @@ const Navbar = () => {
               </button>
             );
           })()}
-          <div className="absolute top-full left-0 mt-1 w-[560px] bg-card border border-border rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[200] p-2 grid grid-cols-2 gap-0.5">
+          <div className="absolute top-full left-0 mt-1 w-[540px] bg-card border border-border rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[200] p-2 grid grid-cols-2 gap-0.5">
             {servicesItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.href}
-                className="block px-3 py-2.5 text-[13px] text-silver hover:text-foreground hover:bg-secondary rounded transition-colors leading-snug"
+                className="group/item flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors hover:bg-secondary"
               >
-                {item.label}
+                <span className="flex-shrink-0 mt-0.5 w-7 h-7 rounded-md bg-primary/8 flex items-center justify-center group-hover/item:bg-primary/15 transition-colors">
+                  <item.icon className="w-3.5 h-3.5 text-primary" />
+                </span>
+                <span className="flex-1 text-[13px] text-silver group-hover/item:text-foreground transition-colors leading-snug">
+                  {item.label}
+                </span>
               </Link>
             ))}
           </div>
@@ -145,36 +164,55 @@ const Navbar = () => {
       </button>
 
       {mobileOpen && (
-        <div className="absolute top-[76px] left-0 right-0 bg-background/98 backdrop-blur-xl border-b border-border p-6 flex flex-col gap-3 lg:hidden max-h-[80vh] overflow-y-auto">
+        <div className="absolute top-[76px] left-0 right-0 bg-background/98 backdrop-blur-xl border-b border-border p-6 flex flex-col gap-1 lg:hidden max-h-[80vh] overflow-y-auto">
+
+          {/* Mobile — Industries */}
           <button
-            className="flex items-center justify-between text-sm font-medium uppercase tracking-wider text-silver hover:text-foreground transition-colors py-1"
+            className="flex items-center justify-between text-sm font-medium uppercase tracking-wider text-silver hover:text-foreground transition-colors py-2.5"
             onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
           >
             Industries
             <ChevronDown className={`w-4 h-4 transition-transform ${mobileIndustriesOpen ? "rotate-180" : ""}`} />
           </button>
           {mobileIndustriesOpen && (
-            <div className="ml-4 flex flex-col gap-2 border-l-2 border-primary/20 pl-4">
+            <div className="ml-2 flex flex-col gap-0.5 border-l-2 border-primary/20 pl-3 mb-2">
               {industriesItems.map((item) => (
-                <a key={item} href="#" className="text-sm text-silver hover:text-foreground transition-colors" onClick={() => setMobileOpen(false)}>
-                  {item}
+                <a
+                  key={item.label}
+                  href="#"
+                  className="flex items-center gap-3 py-2 px-2 rounded-lg text-sm text-silver hover:text-foreground hover:bg-secondary transition-colors"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span className="w-6 h-6 rounded flex items-center justify-center bg-primary/8 flex-shrink-0">
+                    <item.icon className="w-3.5 h-3.5 text-primary" />
+                  </span>
+                  {item.label}
                 </a>
               ))}
             </div>
           )}
 
+          {/* Mobile — Services */}
           <button
-            className="flex items-center justify-between text-sm font-medium uppercase tracking-wider text-silver hover:text-foreground transition-colors py-1"
+            className="flex items-center justify-between text-sm font-medium uppercase tracking-wider text-silver hover:text-foreground transition-colors py-2.5"
             onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
           >
             Services
             <ChevronDown className={`w-4 h-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
           </button>
           {mobileServicesOpen && (
-            <div className="ml-4 flex flex-col gap-2 border-l-2 border-primary/20 pl-4">
+            <div className="ml-2 flex flex-col gap-0.5 border-l-2 border-primary/20 pl-3 mb-2">
               {servicesItems.map((item) => (
-                <Link key={item.label} to={item.href} className="text-sm text-silver hover:text-foreground transition-colors" onClick={() => setMobileOpen(false)}>
-                  {item.label}
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="flex items-center gap-3 py-2 px-2 rounded-lg text-sm text-silver hover:text-foreground hover:bg-secondary transition-colors"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span className="w-6 h-6 rounded flex items-center justify-center bg-primary/8 flex-shrink-0">
+                    <item.icon className="w-3.5 h-3.5 text-primary" />
+                  </span>
+                  <span className="leading-snug">{item.label}</span>
                 </Link>
               ))}
             </div>
@@ -183,7 +221,7 @@ const Navbar = () => {
           <NavLink
             to="/careers"
             className={({ isActive }) =>
-              `text-sm font-medium uppercase tracking-wider transition-colors py-1 ${isActive ? "text-primary font-semibold" : "text-silver hover:text-foreground"}`
+              `text-sm font-medium uppercase tracking-wider transition-colors py-2.5 ${isActive ? "text-primary font-semibold" : "text-silver hover:text-foreground"}`
             }
             onClick={() => setMobileOpen(false)}
           >
@@ -193,14 +231,14 @@ const Navbar = () => {
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              `text-sm font-medium uppercase tracking-wider transition-colors py-1 ${isActive ? "text-primary font-semibold" : "text-silver hover:text-foreground"}`
+              `text-sm font-medium uppercase tracking-wider transition-colors py-2.5 ${isActive ? "text-primary font-semibold" : "text-silver hover:text-foreground"}`
             }
             onClick={() => setMobileOpen(false)}
           >
             About Us
           </NavLink>
 
-          <div className="flex flex-col gap-3 mt-2 pt-4 border-t border-border">
+          <div className="flex flex-col gap-3 mt-3 pt-4 border-t border-border">
             <a
               href={WA_LINK}
               target="_blank"
