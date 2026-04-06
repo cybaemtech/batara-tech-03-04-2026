@@ -13,7 +13,8 @@ const panelStyle = (zIndex: number, first = false): CSSProperties => ({
   top: 0,
   zIndex,
   borderRadius: "1.5rem 1.5rem 0 0",
-  boxShadow: "0 -32px 60px rgba(0,0,0,0.55)",
+  boxShadow: "0 -24px 80px rgba(0,0,0,0.7), 0 -2px 0 rgba(255,255,255,0.06)",
+  overflow: "hidden",
   ...(first ? { marginTop: "-1.5rem" } : {}),
 });
 
@@ -50,7 +51,8 @@ const Index = () => {
           position: "relative",
           zIndex: 40,
           borderRadius: "1.5rem 1.5rem 0 0",
-          boxShadow: "0 -32px 60px rgba(0,0,0,0.55)",
+          boxShadow: "0 -24px 80px rgba(0,0,0,0.7), 0 -2px 0 rgba(255,255,255,0.06)",
+          overflow: "hidden",
         }}
       >
         <ContactSection />
