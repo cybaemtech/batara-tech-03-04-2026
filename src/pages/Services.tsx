@@ -247,21 +247,30 @@ const Services = () => {
       </section>
 
       {/* E-2-E Ecosystem Detailed */}
-      <section className="relative z-[1] py-16 md:py-24 px-4 sm:px-8 md:px-16">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative z-[1] py-16 md:py-24 px-4 sm:px-8 md:px-16 bg-[#060c1a] overflow-hidden">
+        {/* Subtle grid overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(hsl(214 72% 55% / 0.04) 1px, transparent 1px), linear-gradient(90deg, hsl(214 72% 55% / 0.04) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+        <div className="max-w-6xl mx-auto relative">
           <motion.div {...fadeUp} className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-8 h-0.5 bg-primary" />
+              <div className="w-8 h-0.5 bg-[hsl(214_72%_45%)]" />
               <span className="section-label text-accent-orange-2">
                 Our USP
               </span>
-              <div className="w-8 h-0.5 bg-primary" />
+              <div className="w-8 h-0.5 bg-[hsl(214_72%_45%)]" />
             </div>
-            <h2 className="section-title text-foreground mb-4">
+            <h2 className="section-title text-white mb-4">
               THE E-2-E SOLUTION ECOSYSTEM
             </h2>
-            <p className="text-silver max-w-xl mx-auto text-[15px] leading-relaxed">
-              We do not just hand over a CAD file and walk away. We provide a complete End-to-End ecosystem.
+            <p className="text-white/50 max-w-xl mx-auto text-[15px] leading-relaxed">
+              We do not just hand over a CAD file and walk away. We provide a complete End-to-End engineering ecosystem — from first concept to final production.
             </p>
           </motion.div>
 
@@ -279,11 +288,11 @@ const Services = () => {
               {/* SVG — rings + dashed spoke lines */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 440 440" fill="none">
                 {/* Outer ring */}
-                <circle cx="220" cy="220" r="195" stroke="hsl(214 72% 55% / 0.12)" strokeWidth="1" />
+                <circle cx="220" cy="220" r="195" stroke="hsl(214 72% 55% / 0.35)" strokeWidth="1.5" />
                 {/* Mid ring */}
-                <circle cx="220" cy="220" r="110" stroke="hsl(214 72% 55% / 0.08)" strokeWidth="1" />
+                <circle cx="220" cy="220" r="110" stroke="hsl(214 72% 55% / 0.2)" strokeWidth="1" />
                 {/* Inner ring */}
-                <circle cx="220" cy="220" r="46" stroke="hsl(214 72% 55% / 0.2)" strokeWidth="1.5" />
+                <circle cx="220" cy="220" r="46" stroke="hsl(214 72% 65% / 0.45)" strokeWidth="1.5" />
                 {/* Dashed spokes — center to each node */}
                 {[
                   { x2: 220, y2: 25 },
@@ -296,10 +305,10 @@ const Services = () => {
                     key={i}
                     x1="220" y1="220"
                     x2={pt.x2} y2={pt.y2}
-                    stroke={i === activeStep ? "hsl(214 72% 55% / 0.5)" : "hsl(214 72% 55% / 0.12)"}
-                    strokeWidth="1"
+                    stroke={i === activeStep ? "hsl(214 72% 65% / 0.7)" : "hsl(214 72% 55% / 0.2)"}
+                    strokeWidth="1.5"
                     strokeDasharray="5 5"
-                    animate={{ opacity: i === activeStep ? 1 : 0.5 }}
+                    animate={{ opacity: i === activeStep ? 1 : 0.6 }}
                     transition={{ duration: 0.4 }}
                   />
                 ))}
@@ -307,10 +316,10 @@ const Services = () => {
 
               {/* Slow-spinning outer decoration ring */}
               <div
-                className="absolute inset-0 rounded-full border border-[hsl(214_72%_50%/0.1)]"
+                className="absolute inset-0 rounded-full border border-[hsl(214_72%_50%/0.25)]"
                 style={{ animation: "spin-ring 40s linear infinite" }}
               >
-                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[hsl(214_72%_65%/0.6)] shadow-[0_0_8px_hsl(214_72%_55%/0.6)]" />
+                <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[hsl(214_72%_65%)] shadow-[0_0_12px_hsl(214_72%_65%),0_0_24px_hsl(214_72%_50%/0.5)]" />
               </div>
 
               {/* Center hub */}
@@ -386,7 +395,7 @@ const Services = () => {
             {/* RIGHT — Description Panel */}
             <div className="flex-1 min-w-0">
               {/* Step counter */}
-              <div className="font-mono text-[11px] tracking-[0.2em] uppercase text-primary mb-3">
+              <div className="font-mono text-[11px] tracking-[0.2em] uppercase text-[hsl(214_72%_65%)] mb-4">
                 Step {String(activeStep + 1).padStart(2, "0")} &nbsp;/&nbsp; {String(ecosystemSteps.length).padStart(2, "0")}
               </div>
 
@@ -399,10 +408,26 @@ const Services = () => {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.35 }}
                 >
-                  <h3 className="font-display font-bold text-2xl md:text-3xl text-foreground mb-4 leading-tight tracking-tight">
-                    {ecosystemSteps[activeStep].label.toUpperCase()}
-                  </h3>
-                  <p className="text-silver text-[15px] leading-relaxed mb-8 max-w-md">
+                  {/* Active step icon */}
+                  <div className="flex items-center gap-4 mb-5">
+                    <div
+                      className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{
+                        background: "radial-gradient(circle, hsl(214 72% 30% / 0.6), hsl(214 72% 12% / 0.8))",
+                        border: "1.5px solid hsl(214 72% 55% / 0.5)",
+                        boxShadow: "0 0 20px hsl(214 72% 37% / 0.3), inset 0 0 12px hsl(214 72% 40% / 0.1)",
+                      }}
+                    >
+                      {(() => {
+                        const Icon = ecosystemSteps[activeStep].icon;
+                        return <Icon className="w-6 h-6 text-[hsl(214_72%_75%)]" />;
+                      })()}
+                    </div>
+                    <h3 className="font-display font-bold text-2xl md:text-3xl text-white leading-tight tracking-tight">
+                      {ecosystemSteps[activeStep].label.toUpperCase()}
+                    </h3>
+                  </div>
+                  <p className="text-white/55 text-[15px] leading-relaxed mb-8 max-w-md border-l-2 border-[hsl(214_72%_50%/0.4)] pl-4">
                     {ecosystemSteps[activeStep].desc}
                   </p>
                 </motion.div>
@@ -416,8 +441,8 @@ const Services = () => {
                     onClick={() => setActiveStep(i)}
                     className={`flex items-center gap-2 px-3.5 py-2 rounded-lg border text-[13px] font-medium transition-all duration-300 ${
                       i === activeStep
-                        ? "bg-primary/10 border-primary/50 text-primary shadow-[0_0_12px_hsl(var(--primary)/0.15)]"
-                        : "border-border text-silver hover:border-primary/30 hover:text-foreground"
+                        ? "bg-[hsl(214_72%_25%/0.4)] border-[hsl(214_72%_55%/0.6)] text-[hsl(214_72%_80%)] shadow-[0_0_16px_hsl(214_72%_37%/0.3)]"
+                        : "border-white/10 text-white/40 hover:border-white/25 hover:text-white/70"
                     }`}
                   >
                     <span className="font-mono text-[10px] opacity-70">{String(i + 1).padStart(2, "0")}</span>
@@ -428,10 +453,10 @@ const Services = () => {
               </div>
 
               {/* Auto-progress bar */}
-              <div className="h-px bg-border/60 overflow-hidden rounded-full">
+              <div className="h-px bg-white/10 overflow-hidden rounded-full">
                 <motion.div
                   key={activeStep}
-                  className="h-full bg-primary"
+                  className="h-full bg-[hsl(214_72%_55%)]"
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: STEP_DURATION / 1000, ease: "linear" }}
