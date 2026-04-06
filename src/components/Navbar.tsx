@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   Menu, X, ChevronDown, Shield,
   Plane, Car, Cog, Cpu, Zap, Truck,
-  Compass, Factory, GitBranch, Film, CircuitBoard, FolderOpen, Image,
+  Layers, Compass, Factory, GitBranch, Film, CircuitBoard, FolderOpen, Image,
   ArrowRight,
 } from "lucide-react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
@@ -19,12 +19,13 @@ const industriesItems = [
 ];
 
 const servicesItems = [
-  { label: "Engineering Design & Analysis",                                          href: "/services",        icon: Compass },
-  { label: "Manufacturing Engineering – BIW, Mould & Sheet Metal",                  href: "/mould-design",    icon: Factory },
-  { label: "Integrated Project Delivery",                                            href: "/services",        icon: GitBranch },
-  { label: "Technical Animation & Publication",                                      href: "/services",        icon: Film },
-  { label: "Electronics Manufacturing (PCB & Electromechanical)",                   href: "/services",        icon: CircuitBoard },
-  { label: "Project Portfolio",                                                      href: "/mould-design",    icon: FolderOpen },
+  { label: "Solutions",                                                              href: "/services",          icon: Layers },
+  { label: "Engineering Design & Analysis",                                          href: "/services",          icon: Compass },
+  { label: "Manufacturing Engineering – BIW, Mould & Sheet Metal",                  href: "/mould-design",      icon: Factory },
+  { label: "Integrated Project Delivery",                                            href: "/services",          icon: GitBranch },
+  { label: "Technical Animation & Publication",                                      href: "/services",          icon: Film },
+  { label: "Electronics Manufacturing (PCB & Electromechanical)",                   href: "/services",          icon: CircuitBoard },
+  { label: "Project Portfolio",                                                      href: "/mould-design",      icon: FolderOpen },
   { label: "Technical Gallery",                                                      href: "/technical-gallery", icon: Image },
 ];
 
