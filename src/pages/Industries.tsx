@@ -30,7 +30,7 @@ const industries = [
       "Manufacturing readiness for aircraft components and major assemblies",
     ],
     image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=1200&q=80",
-    accent: "from-blue-600/20 to-indigo-800/10",
+    accent: "from-blue-700/10 to-slate-800/5",
     tag: "Tier-1 & OEM Ready",
   },
   {
@@ -47,8 +47,8 @@ const industries = [
       "New module development for market differentiation",
       "Design accuracy and quality validation pre-assembly",
     ],
-    image: "https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b?auto=format&fit=crop&w=1200&q=80",
-    accent: "from-sky-600/20 to-blue-900/10",
+    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80",
+    accent: "from-slate-700/10 to-blue-900/5",
     tag: "OEM & Tier-2 Supply Chain",
   },
   {
@@ -65,8 +65,8 @@ const industries = [
       "Operational efficiency improvement through design",
       "Multi-industry domain expertise",
     ],
-    image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1200&q=80",
-    accent: "from-orange-600/15 to-amber-900/10",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80",
+    accent: "from-blue-800/10 to-slate-900/5",
     tag: "Heavy Industry & OEM",
   },
   {
@@ -83,8 +83,8 @@ const industries = [
       "Digital tool implementation for ROI improvement",
       "Industrial IoT architecture and control design",
     ],
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
-    accent: "from-green-600/15 to-emerald-900/10",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
+    accent: "from-slate-600/10 to-blue-800/5",
     tag: "Smart Factory & Industry 4.0",
   },
   {
@@ -101,8 +101,8 @@ const industries = [
       "Electronics hardware specification and prototyping",
       "Programming and control logic development",
     ],
-    image: "https://images.unsplash.com/photo-1624265938030-1c89d5b5d62c?auto=format&fit=crop&w=1200&q=80",
-    accent: "from-yellow-600/15 to-yellow-900/10",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+    accent: "from-blue-600/10 to-slate-800/5",
     tag: "Electronics & Control Systems",
   },
   {
@@ -120,23 +120,27 @@ const industries = [
       "Heavy equipment detailed engineering and documentation",
     ],
     image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80",
-    accent: "from-slate-600/15 to-slate-900/10",
+    accent: "from-slate-700/10 to-blue-900/5",
     tag: "Off-Highway & Construction",
   },
 ];
 
 const Industries = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div
+      className="relative min-h-screen text-foreground"
+      style={{ backgroundColor: "hsl(220,14%,93%)", isolation: "isolate" }}
+    >
       <Navbar />
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden pt-[76px]">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-background to-background pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+      <section
+        className="relative overflow-hidden pt-[76px]"
+        style={{ backgroundColor: "hsl(220,14%,93%)" }}
+      >
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-8 md:px-16 pt-16 pb-14 md:pt-24 md:pb-20">
-          {/* Breadcrumb */}
           <motion.div
             {...fadeUp}
             className="flex items-center gap-2 text-[11px] uppercase tracking-[0.15em] text-silver/50 mb-6"
@@ -160,11 +164,10 @@ const Industries = () => {
             </p>
           </motion.div>
 
-          {/* Stats row */}
           <motion.div
             {...fadeUp}
             transition={{ duration: 0.55, delay: 0.12 }}
-            className="flex flex-wrap gap-8 mt-10"
+            className="flex flex-wrap gap-10 mt-10"
           >
             {[
               { value: "6+", label: "Industry Verticals" },
@@ -183,28 +186,35 @@ const Industries = () => {
       </section>
 
       {/* ── Industry Cards ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 md:px-16 py-16 md:py-24">
-        <div className="flex flex-col gap-16 md:gap-24">
+      <section
+        className="max-w-7xl mx-auto px-4 sm:px-8 md:px-16 py-16 md:py-24"
+        style={{ backgroundColor: "hsl(220,14%,93%)" }}
+      >
+        <div className="flex flex-col gap-10 md:gap-14">
           {industries.map((ind, i) => (
             <motion.article
               key={ind.id}
               {...fadeUp}
-              transition={{ duration: 0.55, delay: 0.05 * (i % 3) }}
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-border bg-card shadow-lg ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}`}
+              transition={{ duration: 0.55, delay: 0.04 * (i % 3) }}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-border shadow-md ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}`}
+              style={{ backgroundColor: "hsl(0,0%,99%)" }}
             >
               {/* Image */}
-              <div className={`relative min-h-[240px] sm:min-h-[300px] lg:min-h-[420px] overflow-hidden ${i % 2 === 1 ? "[direction:ltr]" : ""}`}>
+              <div
+                className={`relative min-h-[240px] sm:min-h-[300px] lg:min-h-[420px] overflow-hidden ${i % 2 === 1 ? "[direction:ltr]" : ""}`}
+              >
                 <img
                   src={ind.image}
                   alt={ind.label}
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-r ${i % 2 === 1 ? "from-transparent to-card/70 lg:from-card/70 lg:to-transparent" : "from-transparent to-card/70"}`} />
-                <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent lg:hidden" />
-                {/* Tag */}
+                <div
+                  className={`absolute inset-0 hidden lg:block ${i % 2 === 1 ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-transparent to-white/30`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent lg:hidden" />
                 <div className="absolute top-4 left-4">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-background/80 backdrop-blur-sm border border-border text-primary">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-white/90 backdrop-blur-sm border border-slate-200 text-primary">
                     <ind.icon className="w-3 h-3" />
                     {ind.tag}
                   </span>
@@ -212,13 +222,15 @@ const Industries = () => {
               </div>
 
               {/* Content */}
-              <div className={`flex flex-col justify-center p-7 sm:p-10 lg:p-12 bg-gradient-to-br ${ind.accent} ${i % 2 === 1 ? "[direction:ltr]" : ""}`}>
+              <div
+                className={`flex flex-col justify-center p-7 sm:p-10 lg:p-12 bg-gradient-to-br ${ind.accent} ${i % 2 === 1 ? "[direction:ltr]" : ""}`}
+              >
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
                     <ind.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-primary/50 font-medium leading-none mb-0.5">
+                    <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-primary/40 font-medium leading-none mb-0.5">
                       Industry {String(i + 1).padStart(2, "0")}
                     </p>
                     <h2 className="text-xl font-bold text-foreground leading-tight">{ind.label}</h2>
@@ -229,7 +241,7 @@ const Industries = () => {
                   {ind.tagline}
                 </h3>
 
-                <p className="text-[13px] sm:text-sm text-silver leading-relaxed mb-6">
+                <p className="text-[13px] sm:text-sm text-silver leading-relaxed mb-5">
                   {ind.summary}
                 </p>
 
@@ -256,7 +268,7 @@ const Industries = () => {
       </section>
 
       {/* ── CTA ── */}
-      <section className="border-t border-border bg-card">
+      <section style={{ borderTop: "1px solid hsl(220,14%,84%)", backgroundColor: "hsl(0,0%,99%)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-16 py-16 md:py-20">
           <motion.div
             {...fadeUp}
