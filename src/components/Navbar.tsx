@@ -165,97 +165,114 @@ const Navbar = () => {
       </button>
 
       {mobileOpen && (
-        <div className="absolute top-[76px] left-0 right-0 bg-background/98 backdrop-blur-xl border-b border-border p-6 flex flex-col gap-1 lg:hidden max-h-[80vh] overflow-y-auto">
+        <div className="absolute top-[76px] left-0 right-0 lg:hidden max-h-[82vh] overflow-y-auto"
+          style={{ background: "linear-gradient(180deg, #0b1629 0%, #060c1a 100%)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+        >
+          <div className="px-5 py-4 flex flex-col gap-0.5">
 
-          {/* Mobile — Industries */}
-          <button
-            className="flex items-center justify-between text-sm font-medium uppercase tracking-wider text-silver hover:text-foreground transition-colors py-2.5"
-            onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
-          >
-            Industries
-            <ChevronDown className={`w-4 h-4 transition-transform ${mobileIndustriesOpen ? "rotate-180" : ""}`} />
-          </button>
-          {mobileIndustriesOpen && (
-            <div className="ml-2 flex flex-col gap-0.5 border-l-2 border-primary/20 pl-3 mb-2">
-              {industriesItems.map((item) => (
-                <a
-                  key={item.label}
-                  href="#"
-                  className="flex items-center gap-3 py-2 px-2 rounded-lg text-sm text-silver hover:text-foreground hover:bg-secondary transition-colors"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <span className="w-6 h-6 rounded flex items-center justify-center bg-primary/8 flex-shrink-0">
-                    <item.icon className="w-3.5 h-3.5 text-primary" />
-                  </span>
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          )}
-
-          {/* Mobile — Services */}
-          <button
-            className="flex items-center justify-between text-sm font-medium uppercase tracking-wider text-silver hover:text-foreground transition-colors py-2.5"
-            onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-          >
-            Services
-            <ChevronDown className={`w-4 h-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
-          </button>
-          {mobileServicesOpen && (
-            <div className="ml-2 flex flex-col gap-0.5 border-l-2 border-primary/20 pl-3 mb-2">
-              {servicesItems.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  className="flex items-center gap-3 py-2 px-2 rounded-lg text-sm text-silver hover:text-foreground hover:bg-secondary transition-colors"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <span className="w-6 h-6 rounded flex items-center justify-center bg-primary/8 flex-shrink-0">
-                    <item.icon className="w-3.5 h-3.5 text-primary" />
-                  </span>
-                  <span className="leading-snug">{item.label}</span>
-                </Link>
-              ))}
-            </div>
-          )}
-
-          <NavLink
-            to="/careers"
-            className={({ isActive }) =>
-              `text-sm font-medium uppercase tracking-wider transition-colors py-2.5 ${isActive ? "text-primary font-semibold" : "text-silver hover:text-foreground"}`
-            }
-            onClick={() => setMobileOpen(false)}
-          >
-            Careers
-          </NavLink>
-
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              `text-sm font-medium uppercase tracking-wider transition-colors py-2.5 ${isActive ? "text-primary font-semibold" : "text-silver hover:text-foreground"}`
-            }
-            onClick={() => setMobileOpen(false)}
-          >
-            About Us
-          </NavLink>
-
-          <div className="flex flex-col gap-3 mt-3 pt-4 border-t border-border">
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-4 py-3 border border-primary/30 rounded text-primary text-sm font-medium"
-            >
-              <WhatsAppIcon />
-              WhatsApp Us
-            </a>
+            {/* Mobile — Industries */}
             <button
-              onClick={handleRequestPrototype}
-              className="flex items-center justify-center gap-2 px-4 py-3 bg-primary rounded text-primary-foreground text-sm font-semibold"
+              className="flex items-center justify-between w-full text-[13px] font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors py-3 px-1 border-b border-white/[0.06]"
+              onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
             >
-              <Shield className="w-4 h-4" />
-              Request Prototype
+              Industries
+              <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-200 ${mobileIndustriesOpen ? "rotate-180" : ""}`} />
             </button>
+            {mobileIndustriesOpen && (
+              <div
+                className="flex flex-col gap-0.5 py-2 px-2 mb-1 rounded-xl mt-1"
+                style={{ background: "rgba(30,60,120,0.18)", border: "1px solid rgba(255,255,255,0.06)" }}
+              >
+                {industriesItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href="#"
+                    className="flex items-center gap-3 py-2.5 px-3 rounded-lg text-[13px] text-white/60 hover:text-white transition-colors"
+                    style={{ background: "transparent" }}
+                    onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.05)")}
+                    onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.2)" }}>
+                      <item.icon className="w-3.5 h-3.5 text-primary" />
+                    </span>
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {/* Mobile — Services */}
+            <button
+              className="flex items-center justify-between w-full text-[13px] font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors py-3 px-1 border-b border-white/[0.06]"
+              onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+            >
+              Services
+              <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`} />
+            </button>
+            {mobileServicesOpen && (
+              <div
+                className="flex flex-col gap-0.5 py-2 px-2 mb-1 rounded-xl mt-1"
+                style={{ background: "rgba(30,60,120,0.18)", border: "1px solid rgba(255,255,255,0.06)" }}
+              >
+                {servicesItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className="flex items-center gap-3 py-2.5 px-3 rounded-lg text-[13px] text-white/60 hover:text-white transition-colors"
+                    style={{ background: "transparent" }}
+                    onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.05)")}
+                    onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.2)" }}>
+                      <item.icon className="w-3.5 h-3.5 text-primary" />
+                    </span>
+                    <span className="leading-snug">{item.label}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            <NavLink
+              to="/careers"
+              className={({ isActive }) =>
+                `text-[13px] font-semibold uppercase tracking-widest transition-colors py-3 px-1 border-b border-white/[0.06] ${isActive ? "text-primary" : "text-white/70 hover:text-white"}`
+              }
+              onClick={() => setMobileOpen(false)}
+            >
+              Careers
+            </NavLink>
+
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                `text-[13px] font-semibold uppercase tracking-widest transition-colors py-3 px-1 ${isActive ? "text-primary" : "text-white/70 hover:text-white"}`
+              }
+              onClick={() => setMobileOpen(false)}
+            >
+              About Us
+            </NavLink>
+
+            <div className="flex flex-col gap-3 mt-4 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-primary text-[13px] font-semibold tracking-wide transition-all"
+                style={{ background: "rgba(59,130,246,0.1)", border: "1px solid rgba(59,130,246,0.25)" }}
+              >
+                <WhatsAppIcon />
+                WhatsApp Us
+              </a>
+              <button
+                onClick={handleRequestPrototype}
+                className="flex items-center justify-center gap-2 px-4 py-3 bg-primary rounded-lg text-white text-[13px] font-semibold tracking-wide hover:brightness-110 transition-all"
+              >
+                <Shield className="w-4 h-4" />
+                Request Prototype
+              </button>
+            </div>
           </div>
         </div>
       )}
