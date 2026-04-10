@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Compass, Factory, GitBranch, Film, CircuitBoard } from "lucide-react";
+import { ArrowRight, ArrowLeft, Compass, Factory, GitBranch, Film, CircuitBoard } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const AUTOPLAY_DELAY = 4000;
+const AUTOPLAY_DELAY = 4500;
 
 const services = [
   {
@@ -77,7 +77,7 @@ const services = [
     href: "/services",
     headline: "Smart Electronics for Demanding Applications",
     description:
-      "From schematic to finished board — precision PCBs and electromechanical assemblies for industrial automation, embedded systems, and custom modules, optimised for EMC compliance and thermal performance.",
+      "From schematic to finished board — precision PCBs and electromechanical assemblies for industrial automation and embedded systems, optimised for EMC compliance and thermal performance.",
     features: [
       "PCB Design & Layout (Altium, KiCad)",
       "Schematic & Netlist Design",
@@ -92,41 +92,50 @@ const OurServicesSection = () => {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [direction, setDirection] = useState(1);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const goTo = useCallback((index: number) => {
+  const goTo = useCallback((index: number, dir = 1) => {
+    setDirection(dir);
     setActive(index);
     setProgress(0);
   }, []);
 
   const next = useCallback(() => {
+    setDirection(1);
     setActive((prev) => (prev + 1) % services.length);
     setProgress(0);
   }, []);
 
-  // Autoplay
+  const prev = useCallback(() => {
+    setDirection(-1);
+    setActive((prev) => (prev - 1 + services.length) % services.length);
+    setProgress(0);
+  }, []);
+
   useEffect(() => {
     if (paused) return;
-    intervalRef.current = setInterval(next, AUTOPLAY_DELAY);
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [paused, next]);
+    timerRef.current = setInterval(next, AUTOPLAY_DELAY);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [paused, next, active]);
 
-  // Progress bar tick
   useEffect(() => {
     if (paused) return;
     setProgress(0);
     progressRef.current = setInterval(() => {
       setProgress((p) => Math.min(p + 100 / (AUTOPLAY_DELAY / 50), 100));
     }, 50);
-    return () => {
-      if (progressRef.current) clearInterval(progressRef.current);
-    };
+    return () => { if (progressRef.current) clearInterval(progressRef.current); };
   }, [active, paused]);
 
   const current = services[active];
+
+  const variants = {
+    enter: (d: number) => ({ opacity: 0, x: d > 0 ? 60 : -60 }),
+    center: { opacity: 1, x: 0 },
+    exit: (d: number) => ({ opacity: 0, x: d > 0 ? -60 : 60 }),
+  };
 
   return (
     <section
@@ -135,26 +144,41 @@ const OurServicesSection = () => {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Top separator */}
       <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
       {/* Section header */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-16 pt-12 md:pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-16 pt-12 md:pt-16 pb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
         >
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-0.5 bg-primary" />
-            <span className="section-label text-primary">What We Do</span>
-          </div>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-0.5 bg-primary" />
+              <span className="section-label text-primary">What We Do</span>
+            </div>
             <h2 className="section-title text-foreground">OUR SERVICES</h2>
+          </div>
+          <div className="flex items-center gap-3">
+            {/* Prev / Next */}
+            <button
+              onClick={() => { prev(); setPaused(false); }}
+              className="w-9 h-9 rounded-full flex items-center justify-center border border-border text-foreground/50 hover:border-primary hover:text-primary hover:bg-primary/10 transition-all"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => { next(); setPaused(false); }}
+              className="w-9 h-9 rounded-full flex items-center justify-center border border-border text-foreground/50 hover:border-primary hover:text-primary hover:bg-primary/10 transition-all"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </button>
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:gap-3 transition-all shrink-0"
+              className="hidden sm:inline-flex items-center gap-2 text-primary text-sm font-semibold hover:gap-3 transition-all ml-1"
             >
               View all services <ArrowRight className="w-4 h-4" />
             </Link>
@@ -162,188 +186,104 @@ const OurServicesSection = () => {
         </motion.div>
       </div>
 
-      {/* ── DESKTOP layout (lg+) ── */}
-      <div className="hidden lg:flex border-t border-border">
+      {/* Full-width slide panel */}
+      <div className="border-t border-border overflow-hidden relative">
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={current.id}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col lg:flex-row"
+          >
+            {/* Text content */}
+            <div className="flex-1 px-6 sm:px-10 md:px-16 py-10 lg:py-14 flex flex-col justify-center max-w-2xl">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                  <current.icon className="w-5 h-5 text-primary" />
+                </div>
+                <div className="w-px h-7 bg-border" />
+                <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-primary/60 font-medium">
+                  Service {active + 1} of {services.length}
+                </span>
+              </div>
 
-        {/* LEFT — service list */}
-        <div className="w-[300px] shrink-0 bg-accent border-r border-white/[0.06] flex flex-col">
-          {services.map((svc, i) => {
-            const isActive = i === active;
-            const num = String(i + 1).padStart(2, "0");
-            return (
-              <button
-                key={svc.id}
-                onClick={() => { goTo(i); setPaused(true); }}
-                className={`group relative flex flex-col px-6 py-[18px] text-left transition-all duration-200 border-b border-white/[0.06] last:border-b-0 overflow-hidden ${
-                  isActive ? "" : "hover:bg-white/[0.04]"
-                }`}
+              <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground leading-snug mb-5">
+                {current.headline}
+              </h3>
+
+              <p className="text-sm text-silver leading-relaxed mb-8">
+                {current.description}
+              </p>
+
+              <ul className="flex flex-col gap-3 mb-10">
+                {current.features.map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-[13px] text-foreground/80">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                to={current.href}
+                className="inline-flex items-center gap-2 text-[13px] font-semibold text-primary hover:gap-3 transition-all group w-fit"
               >
-                {/* Active bg */}
-                {isActive && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 pointer-events-none" />
-                )}
+                Explore this service
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </div>
 
-                {/* Progress bar at bottom of active item */}
-                {isActive && !paused && (
-                  <div className="absolute bottom-0 left-0 h-[2px] bg-white/40 transition-none" style={{ width: `${progress}%` }} />
-                )}
-
-                {/* Right accent */}
-                <div className={`absolute right-0 top-3 bottom-3 w-[3px] rounded-l-full transition-opacity duration-300 bg-white/40 ${isActive ? "opacity-100" : "opacity-0"}`} />
-
-                <div className="relative flex flex-col gap-1.5">
-                  <span className={`font-mono text-[10px] tracking-[0.22em] font-bold transition-colors ${isActive ? "text-white/50" : "text-white/20 group-hover:text-white/35"}`}>
-                    {num}
-                  </span>
-                  <span className={`font-display text-[12px] font-bold leading-snug tracking-wide transition-colors ${isActive ? "text-white" : "text-white/50 group-hover:text-white/80"}`}>
-                    {svc.label}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* RIGHT — auto-sliding content + image */}
-        <div className="flex-1 bg-background overflow-hidden relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current.id}
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-row h-full"
-            >
-              {/* Text content */}
-              <div className="flex-1 px-10 py-10 flex flex-col justify-center max-w-xl">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                    <current.icon className="w-4 h-4 text-primary" />
-                  </div>
-                  <div className="w-px h-6 bg-border" />
-                  <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-primary/60 font-medium">
-                    Service {active + 1} of {services.length}
-                  </span>
-                </div>
-
-                <h3 className="font-display text-xl md:text-2xl font-bold text-foreground leading-snug mb-4">
-                  {current.headline}
-                </h3>
-
-                <p className="text-sm text-silver leading-relaxed mb-6">
-                  {current.description}
-                </p>
-
-                <ul className="flex flex-col gap-2.5 mb-8">
-                  {current.features.map((f) => (
-                    <li key={f} className="flex items-center gap-3 text-[13px] text-foreground/80">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to={current.href}
-                  className="inline-flex items-center gap-2 text-[13px] font-semibold text-primary hover:gap-3 transition-all group w-fit"
-                >
-                  Explore this service
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
-
-              {/* Image */}
-              <div className="w-[380px] shrink-0 relative">
-                <img
-                  src={current.image}
-                  alt={current.label}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-transparent" />
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+            {/* Image — flush right */}
+            <div className="lg:w-[480px] xl:w-[520px] shrink-0 relative min-h-[260px] sm:min-h-[320px] lg:min-h-0">
+              <img
+                src={current.image}
+                alt={current.label}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-transparent hidden lg:block" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent lg:hidden" />
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      {/* ── MOBILE / TABLET layout (< lg): image slider + dots ── */}
-      <div className="lg:hidden">
-        <div className="border-t border-border">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current.id}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      {/* Progress dots */}
+      <div className="flex items-center justify-between px-4 sm:px-8 md:px-16 mt-5">
+        <div className="flex items-center gap-2">
+          {services.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { goTo(i, i > active ? 1 : -1); setPaused(false); }}
+              className="relative flex items-center"
             >
-              {/* Image */}
-              <div className="relative h-52 sm:h-64 overflow-hidden">
-                <img
-                  src={current.image}
-                  alt={current.label}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-                {/* Service counter */}
-                <div className="absolute top-4 right-4 font-mono text-[10px] tracking-[0.18em] text-white/60 bg-black/40 backdrop-blur-sm px-2 py-1 rounded">
-                  {String(active + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="px-4 sm:px-8 py-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                    <current.icon className="w-4 h-4 text-primary" />
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-foreground leading-snug">
-                    {current.headline}
-                  </h3>
-                </div>
-
-                <p className="text-sm text-silver leading-relaxed mb-5">
-                  {current.description}
-                </p>
-
-                <ul className="flex flex-col gap-2.5 mb-6">
-                  {current.features.map((f) => (
-                    <li key={f} className="flex items-center gap-3 text-[13px] text-foreground/80">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to={current.href}
-                  className="inline-flex items-center gap-2 text-[13px] font-semibold text-primary hover:gap-3 transition-all group"
-                >
-                  Explore this service
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Dot nav */}
-          <div className="flex items-center justify-center gap-2 pb-6">
-            {services.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => { goTo(i); setPaused(true); }}
-                className={`rounded-full transition-all duration-300 ${
-                  i === active ? "w-6 h-2 bg-primary" : "w-2 h-2 bg-white/20 hover:bg-white/40"
+              <span
+                className={`block rounded-full transition-all duration-300 ${
+                  i === active ? "w-7 h-2 bg-primary" : "w-2 h-2 bg-foreground/20 hover:bg-foreground/40"
                 }`}
               />
-            ))}
-          </div>
+              {/* Progress fill on active dot */}
+              {i === active && !paused && (
+                <span
+                  className="absolute left-0 top-0 h-2 rounded-full bg-white/40 transition-none"
+                  style={{ width: `${(progress / 100) * 28}px` }}
+                />
+              )}
+            </button>
+          ))}
         </div>
+        <Link
+          to="/services"
+          className="sm:hidden inline-flex items-center gap-1.5 text-primary text-sm font-semibold"
+        >
+          View all <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
       </div>
 
-      {/* Bottom separator */}
-      <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mt-6" />
     </section>
   );
 };
