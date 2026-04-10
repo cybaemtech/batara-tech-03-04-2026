@@ -197,11 +197,11 @@ const OurServicesSection = () => {
             animate="center"
             exit="exit"
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col lg:flex-row"
+            className="grid grid-cols-1 lg:grid-cols-[1fr_460px] xl:grid-cols-[1fr_520px] min-h-[420px] lg:min-h-[460px]"
           >
             {/* Text content */}
-            <div className="flex-1 px-6 sm:px-10 md:px-16 py-10 lg:py-14 flex flex-col justify-center max-w-2xl">
-              <div className="flex items-center gap-3 mb-5">
+            <div className="px-6 sm:px-10 md:px-16 py-10 lg:py-12 flex flex-col justify-center">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
                   <current.icon className="w-5 h-5 text-primary" />
                 </div>
@@ -211,15 +211,15 @@ const OurServicesSection = () => {
                 </span>
               </div>
 
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground leading-snug mb-5">
+              <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground leading-snug mb-4">
                 {current.headline}
               </h3>
 
-              <p className="text-sm text-silver leading-relaxed mb-8">
+              <p className="text-sm text-silver leading-relaxed mb-5">
                 {current.description}
               </p>
 
-              <ul className="flex flex-col gap-3 mb-10">
+              <ul className="flex flex-col gap-2.5 mb-6">
                 {current.features.map((f) => (
                   <li key={f} className="flex items-center gap-3 text-[13px] text-foreground/80">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
@@ -237,8 +237,8 @@ const OurServicesSection = () => {
               </Link>
             </div>
 
-            {/* Image — flush right */}
-            <div className="lg:w-[480px] xl:w-[520px] shrink-0 relative min-h-[260px] sm:min-h-[320px] lg:min-h-0">
+            {/* Image — fills full grid cell height */}
+            <div className="relative min-h-[260px] lg:min-h-0 overflow-hidden">
               <img
                 src={current.image}
                 alt={current.label}
