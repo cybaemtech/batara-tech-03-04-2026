@@ -16,7 +16,7 @@ const services = [
     icon: PenTool,
     title: "Engineering Design & Analysis",
     desc: "CAD modelling, FEA, CFD — precision from concept to validated blueprint.",
-    href: "/services",
+    href: "/solutions",
     accent: "hsl(214 72% 37%)",
     span: "md:col-span-2",
   },
@@ -32,7 +32,7 @@ const services = [
     icon: Play,
     title: "Technical Animation & Publication",
     desc: "Factory simulations and exploded-view animations that close the gap between design and production.",
-    href: "/services",
+    href: "/solutions",
     accent: "hsl(214 72% 45%)",
     span: "",
   },
@@ -40,7 +40,7 @@ const services = [
     icon: Cpu,
     title: "Electronics Manufacturing",
     desc: "PCB design and electromechanical component integration for end-to-end product builds.",
-    href: "/services",
+    href: "/solutions",
     accent: "hsl(220 58% 28%)",
     span: "",
   },
@@ -48,7 +48,7 @@ const services = [
     icon: Zap,
     title: "Integrated Project Delivery",
     desc: "Single-point ownership from ideation through production support — no handoff gaps.",
-    href: "/services",
+    href: "/solutions",
     accent: "hsl(214 72% 37%)",
     span: "",
   },
@@ -92,7 +92,7 @@ const HomeServicesGrid = () => {
               END-TO-END ENGINEERING,<br className="hidden sm:block" /> ACROSS EVERY DISCIPLINE
             </h2>
             <Link
-              to="/services"
+              to="/solutions"
               className="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:gap-3 transition-all shrink-0"
             >
               View all services <ArrowRight className="w-4 h-4" />

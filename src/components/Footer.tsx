@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const footerLinks = [
   { label: "Industries", href: "#", isRoute: false },
-  { label: "Services", href: "/services", isRoute: true },
+  { label: "Solutions", href: "/solutions", isRoute: true },
   { label: "Technical Gallery", href: "/technical-gallery", isRoute: true },
   { label: "About Us", href: "/about", isRoute: true },
   { label: "Careers", href: "#", isRoute: false },

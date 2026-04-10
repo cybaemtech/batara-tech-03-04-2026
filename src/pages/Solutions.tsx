@@ -119,7 +119,7 @@ const proofPoints = [
 
 const STEP_DURATION = 2000;
 
-const Services = () => {
+const Solutions = () => {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
 
@@ -598,4 +598,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Solutions;

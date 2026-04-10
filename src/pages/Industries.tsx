@@ -263,7 +263,7 @@ const Industries = () => {
                 </ul>
 
                 <Link
-                  to="/services"
+                  to="/solutions"
                   className="inline-flex items-center gap-2 text-[13px] font-semibold text-primary hover:gap-3 transition-all group w-fit"
                 >
                   View related services
@@ -296,7 +296,7 @@ const Industries = () => {
             </div>
             <div className="flex flex-col sm:flex-row gap-3 shrink-0">
               <Link
-                to="/services"
+                to="/solutions"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-primary/30 rounded text-primary text-[13px] font-semibold tracking-wide hover:bg-primary/10 hover:border-primary transition-all"
               >
                 Our Services

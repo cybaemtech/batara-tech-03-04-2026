@@ -9,14 +9,14 @@ import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 const WA_LINK = "https://wa.me/918105111599";
 
 const servicesItems = [
-  { label: "Solutions",                                                              href: "/services",          icon: Layers },
-  { label: "Engineering Design & Analysis",                                          href: "/services",          icon: Compass },
-  { label: "Manufacturing Engineering – BIW, Mould & Sheet Metal",                  href: "/mould-design",      icon: Factory },
-  { label: "Integrated Project Delivery",                                            href: "/services",          icon: GitBranch },
-  { label: "Technical Animation & Publication",                                      href: "/services",          icon: Film },
-  { label: "Electronics Manufacturing (PCB & Electromechanical)",                   href: "/services",          icon: CircuitBoard },
-  { label: "Project Portfolio",                                                      href: "/mould-design",      icon: FolderOpen },
-  { label: "Technical Gallery",                                                      href: "/technical-gallery", icon: Image },
+  { label: "Solutions", href: "/solutions", icon: Layers },
+  { label: "Engineering Design & Analysis", href: "/solutions", icon: Compass },
+  { label: "Manufacturing Engineering – BIW, Mould & Sheet Metal", href: "/mould-design", icon: Factory },
+  { label: "Integrated Project Delivery", href: "/solutions", icon: GitBranch },
+  { label: "Technical Animation & Publication", href: "/solutions", icon: Film },
+  { label: "Electronics Manufacturing (PCB & Electromechanical)", href: "/solutions", icon: CircuitBoard },
+  { label: "Project Portfolio", href: "/mould-design", icon: FolderOpen },
+  { label: "Technical Gallery", href: "/technical-gallery", icon: Image },
 ];
 
 const WhatsAppIcon = () => (
@@ -67,7 +67,7 @@ const Navbar = () => {
         {/* Services dropdown */}
         <li className="relative group">
           {(() => {
-            const servicesPaths = ["/services", "/mould-design", "/technical-gallery"];
+            const servicesPaths = ["/solutions", "/mould-design", "/technical-gallery"];
             const isServicesActive = servicesPaths.includes(location.pathname);
             return (
               <button className={`flex items-center gap-1 text-[13px] font-medium tracking-wider uppercase transition-colors py-2 ${isServicesActive ? "text-primary" : "text-silver hover:text-foreground"}`}>

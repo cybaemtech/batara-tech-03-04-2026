@@ -10,7 +10,7 @@ const services = [
     id: "engineering-design",
     label: "Engineering Design & Analysis",
     icon: Compass,
-    href: "/services",
+    href: "/solutions",
     headline: "Precision Engineering, From Concept to Reality",
     description:
       "We deliver end-to-end engineering design — from concept sketches to fully validated detailed drawings. Our team leverages advanced CAD platforms and simulation tools to ensure every component meets exact tolerances and industry standards.",
@@ -42,7 +42,7 @@ const services = [
     id: "integrated-project",
     label: "Integrated Project Delivery",
     icon: GitBranch,
-    href: "/services",
+    href: "/solutions",
     headline: "One Team. One Commitment. On Time.",
     description:
       "We manage the full project lifecycle — from engineering brief to final delivery — co-ordinating multi-disciplinary teams with precision. Milestones are met, risks mitigated early, and quality never compromised.",
@@ -58,7 +58,7 @@ const services = [
     id: "technical-animation",
     label: "Technical Animation & Publication",
     icon: Film,
-    href: "/services",
+    href: "/solutions",
     headline: "Complex Engineering, Made Crystal Clear",
     description:
       "We transform intricate engineering assemblies into high-fidelity 3D animations, exploded views, and interactive technical publications — making complex concepts instantly understandable.",
@@ -74,7 +74,7 @@ const services = [
     id: "electronics-pcb",
     label: "Electronics Manufacturing (PCB & Electromechanical)",
     icon: CircuitBoard,
-    href: "/services",
+    href: "/solutions",
     headline: "Smart Electronics for Demanding Applications",
     description:
       "From schematic to finished board — precision PCBs and electromechanical assemblies for industrial automation and embedded systems, optimised for EMC compliance and thermal performance.",
@@ -177,7 +177,7 @@ const OurServicesSection = () => {
               <ArrowRight className="w-4 h-4" />
             </button>
             <Link
-              to="/services"
+              to="/solutions"
               className="hidden sm:inline-flex items-center gap-2 text-primary text-sm font-semibold hover:gap-3 transition-all ml-1"
             >
               View all services <ArrowRight className="w-4 h-4" />
@@ -276,7 +276,7 @@ const OurServicesSection = () => {
           ))}
         </div>
         <Link
-          to="/services"
+          to="/solutions"
           className="sm:hidden inline-flex items-center gap-1.5 text-primary text-sm font-semibold"
         >
           View all <ArrowRight className="w-3.5 h-3.5" />
