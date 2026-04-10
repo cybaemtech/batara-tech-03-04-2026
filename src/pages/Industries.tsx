@@ -201,9 +201,10 @@ const Industries = () => {
           {industries.map((ind, i) => (
             <motion.article
               key={ind.id}
+              id={ind.id}
               {...fadeUp}
               transition={{ duration: 0.55, delay: 0.04 * (i % 3) }}
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-border shadow-md ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}`}
+              className={`scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-border shadow-md ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}`}
               style={{ backgroundColor: "hsl(0,0%,99%)" }}
             >
               {/* Image */}

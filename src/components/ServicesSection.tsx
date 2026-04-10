@@ -1,55 +1,55 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Car, Rocket, Zap, HeartPulse, ShoppingBag, Hammer } from "lucide-react";
+import { ArrowRight, Car, Plane, Cog, Cpu, Zap, Truck } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const industries = [
   {
-    name: "Automotive Engineering",
-    years: "20 years",
+    name: "Aerospace",
+    description: "Stress analysis, EBOM-to-MBOM & manufacturing readiness",
+    icon: Plane,
+    bg: "/ind-aerospace.png",
+    accent: "hsl(214 72% 37%)",
+    href: "/industries#aerospace",
+  },
+  {
+    name: "Automotive",
+    description: "Vehicle module design, bus, coach & trailer engineering",
     icon: Car,
     bg: "/ind-automotive.png",
-    accent: "hsl(214 72% 37%)",
-    href: "/services",
-  },
-  {
-    name: "Aerospace & Space",
-    years: "10 years",
-    icon: Rocket,
-    bg: "/ind-aerospace.png",
     accent: "hsl(220 58% 22%)",
-    href: "/services",
+    href: "/industries#automotive",
   },
   {
-    name: "Electro Mechanical",
-    years: "10 years",
-    icon: Zap,
-    bg: "/ind-electro.png",
+    name: "Industrial Machinery",
+    description: "Custom equipment & tooling for complex industrial verticals",
+    icon: Cog,
+    bg: "/ind-heavy.png",
     accent: "hsl(214 72% 45%)",
-    href: "/services",
+    href: "/industries#industrial-machinery",
   },
   {
-    name: "Medical Devices",
-    years: "10 years",
-    icon: HeartPulse,
-    bg: "/ind-medical.png",
+    name: "Industrial Automation",
+    description: "PLC solutions, brownfield revamps & smart factory integration",
+    icon: Cpu,
+    bg: "/ind-electro.png",
     accent: "hsl(220 58% 30%)",
-    href: "/services",
+    href: "/industries#industrial-automation",
   },
   {
-    name: "Consumer Products",
-    years: "",
-    icon: ShoppingBag,
-    bg: "/ind-consumer.png",
+    name: "Electro-Mechanical",
+    description: "Integrated systems bridging structural & electronic control",
+    icon: Zap,
+    bg: "/ind-automotive.png",
     accent: "hsl(214 72% 40%)",
-    href: "/services",
+    href: "/industries#electro-mechanical",
   },
   {
     name: "Heavy Machinery",
-    years: "",
-    icon: Hammer,
+    description: "Structural design for off-highway & skid-mounted plant assets",
+    icon: Truck,
     bg: "/ind-heavy.png",
     accent: "hsl(220 58% 22%)",
-    href: "/services",
+    href: "/industries#heavy-machinery",
   },
 ];
 
@@ -69,7 +69,7 @@ const ServicesSection = () => {
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-0.5 bg-primary" />
             <span className="section-label text-primary">
-              Services &amp; Technology
+              Sectors We Serve
             </span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
@@ -77,10 +77,10 @@ const ServicesSection = () => {
               INDUSTRIES WE SERVE
             </h2>
             <Link
-              to="/services"
+              to="/industries"
               className="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:gap-3 transition-all shrink-0"
             >
-              All services <ArrowRight className="w-4 h-4" />
+              All industries <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </motion.div>
@@ -105,7 +105,7 @@ const ServicesSection = () => {
                 />
 
                 {/* Overlay gradients */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/15" />
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
@@ -113,7 +113,7 @@ const ServicesSection = () => {
                   }}
                 />
 
-                {/* Icon top-left */}
+                {/* Icon top-right */}
                 <div
                   className="absolute top-3 right-3 w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110"
                   style={{
@@ -130,11 +130,9 @@ const ServicesSection = () => {
                   <h3 className="font-display font-bold text-white text-sm sm:text-base lg:text-[15px] leading-tight mb-1">
                     {ind.name}
                   </h3>
-                  {ind.years && (
-                    <p className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-white/60">
-                      {ind.years} experience
-                    </p>
-                  )}
+                  <p className="text-[10px] sm:text-[11px] text-white/50 leading-snug line-clamp-2">
+                    {ind.description}
+                  </p>
                   <div className="flex items-center gap-1.5 mt-3 text-[12px] font-semibold text-white/50 group-hover:text-white opacity-0 group-hover:opacity-100 -translate-y-1 group-hover:translate-y-0 transition-all duration-300">
                     Explore <ArrowRight className="w-3 h-3" />
                   </div>
