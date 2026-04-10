@@ -9,6 +9,7 @@ import Services from "./pages/Services";
 import MouldDesign from "./pages/MouldDesign";
 import TechnicalGallery from "./pages/TechnicalGallery";
 import Careers from "./pages/Careers";
+import Industries from "./pages/Industries";
 import NotFound from "./pages/NotFound";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import { ScrollToTop } from "./components/ScrollToTop";
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/mould-design" element={<MouldDesign />} />
           <Route path="/technical-gallery" element={<TechnicalGallery />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/industries" element={<Industries />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,22 +1,12 @@
 import { useState } from "react";
 import {
   Menu, X, ChevronDown, Shield,
-  Plane, Car, Cog, Cpu, Zap, Truck,
   Layers, Compass, Factory, GitBranch, Film, CircuitBoard, FolderOpen, Image,
   ArrowRight,
 } from "lucide-react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 
 const WA_LINK = "https://wa.me/918105111599";
-
-const industriesItems = [
-  { label: "Aerospace",             icon: Plane },
-  { label: "Automotive",            icon: Car },
-  { label: "Industrial Machinery",  icon: Cog },
-  { label: "Industrial Automation", icon: Cpu },
-  { label: "Electro Mechanical",    icon: Zap },
-  { label: "Heavy Machinery",       icon: Truck },
-];
 
 const servicesItems = [
   { label: "Solutions",                                                              href: "/services",          icon: Layers },
@@ -37,7 +27,6 @@ const WhatsAppIcon = () => (
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -63,29 +52,16 @@ const Navbar = () => {
 
       <ul className="hidden lg:flex items-center gap-7 list-none">
 
-        {/* Industries dropdown */}
-        <li className="relative group">
-          <button className="flex items-center gap-1 text-[13px] font-medium tracking-wider uppercase text-silver hover:text-foreground transition-colors py-2">
+        {/* Industries link */}
+        <li>
+          <NavLink
+            to="/industries"
+            className={({ isActive }) =>
+              `text-[13px] font-medium tracking-wider uppercase transition-colors ${isActive ? "text-primary" : "text-silver hover:text-foreground"}`
+            }
+          >
             Industries
-            <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
-          </button>
-          <div className="absolute top-full left-0 mt-1 w-[420px] bg-card border border-border rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[200] p-2 grid grid-cols-2 gap-0.5">
-            {industriesItems.map((item) => (
-              <a
-                key={item.label}
-                href="#"
-                className="group/item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors hover:bg-secondary"
-              >
-                <span className="flex-shrink-0 w-7 h-7 rounded-md bg-primary/8 flex items-center justify-center group-hover/item:bg-primary/15 transition-colors">
-                  <item.icon className="w-3.5 h-3.5 text-primary" />
-                </span>
-                <span className="flex-1 text-[13px] text-silver group-hover/item:text-foreground transition-colors leading-tight">
-                  {item.label}
-                </span>
-                <ArrowRight className="w-3 h-3 text-silver/40 group-hover/item:text-primary group-hover/item:translate-x-0.5 transition-all duration-150 opacity-0 group-hover/item:opacity-100" />
-              </a>
-            ))}
-          </div>
+          </NavLink>
         </li>
 
         {/* Services dropdown */}
@@ -171,36 +147,15 @@ const Navbar = () => {
           <div className="px-5 py-4 flex flex-col gap-0.5">
 
             {/* Mobile — Industries */}
-            <button
-              className="flex items-center justify-between w-full text-[13px] font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors py-3 px-1 border-b border-white/[0.06]"
-              onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
+            <NavLink
+              to="/industries"
+              className={({ isActive }) =>
+                `text-[13px] font-semibold uppercase tracking-widest transition-colors py-3 px-1 border-b border-white/[0.06] ${isActive ? "text-primary" : "text-white/70 hover:text-white"}`
+              }
+              onClick={() => setMobileOpen(false)}
             >
               Industries
-              <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-200 ${mobileIndustriesOpen ? "rotate-180" : ""}`} />
-            </button>
-            {mobileIndustriesOpen && (
-              <div
-                className="flex flex-col gap-0.5 py-2 px-2 mb-1 rounded-xl mt-1"
-                style={{ background: "rgba(30,60,120,0.18)", border: "1px solid rgba(255,255,255,0.06)" }}
-              >
-                {industriesItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href="#"
-                    className="flex items-center gap-3 py-2.5 px-3 rounded-lg text-[13px] text-white/60 hover:text-white transition-colors"
-                    style={{ background: "transparent" }}
-                    onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.05)")}
-                    onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <span className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.2)" }}>
-                      <item.icon className="w-3.5 h-3.5 text-primary" />
-                    </span>
-                    {item.label}
-                  </a>
-                ))}
-              </div>
-            )}
+            </NavLink>
 
             {/* Mobile — Services */}
             <button
