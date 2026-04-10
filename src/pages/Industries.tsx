@@ -136,30 +136,37 @@ const Industries = () => {
       {/* ── Hero ── */}
       <section
         className="relative overflow-hidden pt-[76px]"
-        style={{ backgroundColor: "hsl(220,14%,93%)" }}
+        style={{ backgroundColor: "#0a1628" }}
       >
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/industries-hero-bg.png')" }}
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071020]/95 via-[#0a1628]/80 to-[#071020]/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/80 via-transparent to-transparent" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-8 md:px-16 pt-16 pb-14 md:pt-24 md:pb-20">
           <motion.div
             {...fadeUp}
-            className="flex items-center gap-2 text-[11px] uppercase tracking-[0.15em] text-silver/50 mb-6"
+            className="flex items-center gap-2 text-[11px] uppercase tracking-[0.15em] text-white/40 mb-6"
           >
-            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+            <Link to="/" className="hover:text-white/80 transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-primary">Industries</span>
+            <span className="text-blue-400">Industries</span>
           </motion.div>
 
           <motion.div {...fadeUp} transition={{ duration: 0.55, delay: 0.05 }}>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-0.5 bg-primary" />
-              <span className="section-label text-primary">Sectors We Serve</span>
+              <div className="w-8 h-0.5 bg-blue-400" />
+              <span className="section-label text-blue-400">Sectors We Serve</span>
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-tight mb-6 max-w-3xl">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 max-w-3xl">
               INDUSTRIES WE<br />
-              <span className="text-primary">POWER FORWARD</span>
+              <span className="text-blue-400">POWER FORWARD</span>
             </h1>
-            <p className="text-silver/80 text-base sm:text-lg leading-relaxed max-w-2xl">
+            <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-2xl">
               From aerospace to heavy machinery, Batara Techno Solutions delivers engineering excellence across the sectors that define modern industry. Our cross-domain expertise enables us to match the precision, pace, and compliance demands of each vertical.
             </p>
           </motion.div>
@@ -175,14 +182,14 @@ const Industries = () => {
               { value: "Tier-1", label: "OEM & Supply Chain" },
             ].map((s) => (
               <div key={s.label} className="flex flex-col">
-                <span className="font-display text-2xl font-bold text-primary">{s.value}</span>
-                <span className="text-[11px] uppercase tracking-widest text-silver/50 mt-0.5">{s.label}</span>
+                <span className="font-display text-2xl font-bold text-blue-400">{s.value}</span>
+                <span className="text-[11px] uppercase tracking-widest text-white/35 mt-0.5">{s.label}</span>
               </div>
             ))}
           </motion.div>
         </div>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="h-px bg-white/10" />
       </section>
 
       {/* ── Industry Cards ── */}
