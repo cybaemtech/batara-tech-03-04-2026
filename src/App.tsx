@@ -10,6 +10,7 @@ import MouldDesign from "./pages/MouldDesign";
 import TechnicalGallery from "./pages/TechnicalGallery";
 import Careers from "./pages/Careers";
 import Industries from "./pages/Industries";
+import ServicesPage from "./pages/ServicesPage";
 import NotFound from "./pages/NotFound";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import { ScrollToTop } from "./components/ScrollToTop";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/solutions" element={<Solutions />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route path="/mould-design" element={<MouldDesign />} />
           <Route path="/technical-gallery" element={<TechnicalGallery />} />
           <Route path="/careers" element={<Careers />} />
